@@ -116,6 +116,12 @@ export default function HomeScreen() {
   }, [environment.data]);
 
   const state = dashboard ?? fallbackDashboard;
+
+  // Guards against presenting placeholder environment data as a real reading.
+  // Without this, an unreachable backend would still report "Path looks clear",
+  // which is unsafe for a screen-reader user.
+  const isEnvironmentUnavailable = environment.isError && dashboard === null;
+
   const confidenceLabel = useMemo(
     () => `${Math.round(state.current.confidence * 100)}% confidence`,
     [state.current.confidence],
@@ -248,15 +254,25 @@ export default function HomeScreen() {
             </View>
           </View>
           <Text style={[styles.statusTitle, { color: colors.foreground }]}>
-            {state.current.pathStatus === 'blocked' ? 'Path needs attention' : 'Path looks clear'}
+            {isEnvironmentUnavailable
+              ? 'Environment data unavailable'
+              : state.current.pathStatus === 'blocked'
+                ? 'Path needs attention'
+                : 'Path looks clear'}
           </Text>
           <Text style={[styles.body, { color: colors.mutedForeground }]}>
-            {state.current.obstacles.length ? `${state.current.obstacles.join(', ')} detected ahead.` : 'No obstacles detected in the current frame.'}
+            {isEnvironmentUnavailable
+              ? 'Reconnect to the G Sense service to analyse the route ahead.'
+              : state.current.obstacles.length
+                ? `${state.current.obstacles.join(', ')} detected ahead.`
+                : 'No obstacles detected in the current frame.'}
           </Text>
-          <View style={styles.chipRow}>
-            <View style={[styles.chip, { backgroundColor: colors.secondary }]}><Text style={[styles.chipText, { color: colors.foreground }]}>Elevator {state.current.elevator}</Text></View>
-            <View style={[styles.chip, { backgroundColor: colors.secondary }]}><Text style={[styles.chipText, { color: colors.foreground }]}>{state.current.stairs ? 'Stairs detected' : 'No stairs'}</Text></View>
-          </View>
+          {!isEnvironmentUnavailable && (
+            <View style={styles.chipRow}>
+              <View style={[styles.chip, { backgroundColor: colors.secondary }]}><Text style={[styles.chipText, { color: colors.foreground }]}>Elevator {state.current.elevator}</Text></View>
+              <View style={[styles.chip, { backgroundColor: colors.secondary }]}><Text style={[styles.chipText, { color: colors.foreground }]}>{state.current.stairs ? 'Stairs detected' : 'No stairs'}</Text></View>
+            </View>
+          )}
         </View>
 
         {state.change.detected && (
