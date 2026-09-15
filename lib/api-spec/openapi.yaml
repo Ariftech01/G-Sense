@@ -1,0 +1,396 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: ACCESS-X accessibility assistant API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: environment
+    description: Environmental memory and change detection
+  - name: preferences
+    description: Accessibility preferences
+  - name: assistant
+    description: Voice and camera assistant commands
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /environment:
+    get:
+      operationId: getEnvironment
+      tags: [environment]
+      summary: Get current environment state
+      responses:
+        "200":
+          description: Current environment and reasoning state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentDashboard"
+  /environment/observations:
+    post:
+      operationId: createObservation
+      tags: [environment]
+      summary: Store an observation and compare it with memory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ObservationInput"
+      responses:
+        "201":
+          description: Observation with detected change
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentDashboard"
+  /environment/ocr:
+    post:
+      operationId: extractText
+      tags: [environment]
+      summary: Read text from a captured sign or document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OcrInput"
+      responses:
+        "200":
+          description: Structured OCR result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OcrResult"
+  /demo/run:
+    post:
+      operationId: runDemo
+      tags: [environment]
+      summary: Run the guided ACCESS-X demo scenario
+      responses:
+        "200":
+          description: Completed demo state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentDashboard"
+  /preferences:
+    get:
+      operationId: getPreferences
+      tags: [preferences]
+      summary: Get accessibility preferences
+      responses:
+        "200":
+          description: Preferences
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessibilityPreferences"
+    patch:
+      operationId: updatePreferences
+      tags: [preferences]
+      summary: Update accessibility preferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PreferencesUpdate"
+      responses:
+        "200":
+          description: Updated preferences
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessibilityPreferences"
+  /assistant/command:
+    post:
+      operationId: sendAssistantCommand
+      tags: [assistant]
+      summary: Interpret a concise voice or text command
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssistantCommandInput"
+      responses:
+        "200":
+          description: Spoken and structured assistant response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssistantResponse"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    EnvironmentState:
+      type: object
+      properties:
+        id:
+          type: string
+        observedAt:
+          type: string
+          format: date-time
+        pathStatus:
+          type: string
+          enum: [clear, blocked]
+        obstacles:
+          type: array
+          items:
+            type: string
+        stairs:
+          type: boolean
+        elevator:
+          type: string
+          enum: [available, unavailable, unknown]
+        detectedObjects:
+          type: array
+          items:
+            type: string
+        signs:
+          type: array
+          items:
+            type: string
+        confidence:
+          type: number
+        locationLabel:
+          type: string
+        ocr:
+          anyOf:
+            - $ref: "#/components/schemas/OcrResult"
+            - type: "null"
+        spatialContext:
+          anyOf:
+            - $ref: "#/components/schemas/SpatialContext"
+            - type: "null"
+      required: [id, observedAt, pathStatus, obstacles, stairs, elevator, detectedObjects, signs, confidence, locationLabel, ocr, spatialContext]
+    SpatialWaypoint:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        type:
+          type: string
+          enum: [origin, turn, destination, elevator, stair, barrier]
+        x:
+          type: number
+        y:
+          type: number
+        status:
+          type: string
+          enum: [clear, blocked, caution]
+      required: [id, label, type, x, y, status]
+    ClockDirections:
+      type: object
+      properties:
+        ahead:
+          type: string
+        right:
+          type: string
+        left:
+          type: string
+        behind:
+          type: string
+      required: [ahead, right, left, behind]
+    SpatialContext:
+      type: object
+      properties:
+        waypoints:
+          type: array
+          items:
+            $ref: "#/components/schemas/SpatialWaypoint"
+        currentPoint:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+          required: [x, y]
+        headingDegrees:
+          type: number
+        clockDirections:
+          $ref: "#/components/schemas/ClockDirections"
+      required: [waypoints, currentPoint, headingDegrees, clockDirections]
+    OcrResult:
+      type: object
+      properties:
+        text:
+          type: string
+        lines:
+          type: array
+          items:
+            type: string
+        documentType:
+          type: string
+          enum: [sign, document, unknown]
+        confidence:
+          type: number
+        demoMode:
+          type: boolean
+        safetyMessage:
+          type: string
+      required: [text, lines, documentType, confidence, demoMode, safetyMessage]
+    DetectedChange:
+      type: object
+      properties:
+        detected:
+          type: boolean
+        before:
+          type: string
+        change:
+          type: string
+        currentState:
+          type: string
+        impact:
+          type: string
+        recommendation:
+          type: string
+      required: [detected, before, change, currentState, impact, recommendation]
+    AccessibilityPreferences:
+      type: object
+      properties:
+        avoidStairs:
+          type: boolean
+        preferElevator:
+          type: boolean
+        avoidCrowds:
+          type: boolean
+        responseLength:
+          type: string
+          enum: [brief, standard, detailed]
+        accessibilityMode:
+          type: string
+          enum: [screen-reader, high-contrast, standard]
+        goal:
+          type: string
+      required: [avoidStairs, preferElevator, avoidCrowds, responseLength, accessibilityMode, goal]
+    PreferencesUpdate:
+      type: object
+      properties:
+        avoidStairs:
+          type: boolean
+        preferElevator:
+          type: boolean
+        avoidCrowds:
+          type: boolean
+        responseLength:
+          type: string
+          enum: [brief, standard, detailed]
+        accessibilityMode:
+          type: string
+          enum: [screen-reader, high-contrast, standard]
+        goal:
+          type: string
+    EnvironmentDashboard:
+      type: object
+      properties:
+        current:
+          $ref: "#/components/schemas/EnvironmentState"
+        previous:
+          anyOf:
+            - $ref: "#/components/schemas/EnvironmentState"
+            - type: "null"
+        change:
+          $ref: "#/components/schemas/DetectedChange"
+        preferences:
+          $ref: "#/components/schemas/AccessibilityPreferences"
+        recommendation:
+          type: string
+        demoMode:
+          type: boolean
+        safetyMessage:
+          type: string
+      required: [current, previous, change, preferences, recommendation, demoMode, safetyMessage]
+    ObservationInput:
+      type: object
+      properties:
+        pathStatus:
+          type: string
+          enum: [clear, blocked]
+        obstacles:
+          type: array
+          items:
+            type: string
+        stairs:
+          type: boolean
+        elevator:
+          type: string
+          enum: [available, unavailable, unknown]
+        detectedObjects:
+          type: array
+          items:
+            type: string
+        signs:
+          type: array
+          items:
+            type: string
+        confidence:
+          type: number
+        locationLabel:
+          type: string
+        ocr:
+          anyOf:
+            - $ref: "#/components/schemas/OcrResult"
+            - type: "null"
+      required: [pathStatus, obstacles, stairs, elevator, detectedObjects, signs, confidence, locationLabel]
+    OcrInput:
+      type: object
+      properties:
+        imageData:
+          type: string
+          description: Base64-encoded image bytes. Used transiently for OCR and never persisted.
+        mimeType:
+          type: string
+          enum: [image/jpeg, image/png, image/webp]
+      required: [imageData, mimeType]
+    AssistantCommandInput:
+      type: object
+      properties:
+        command:
+          type: string
+        source:
+          type: string
+          enum: [voice, text, camera]
+      required: [command, source]
+    AssistantResponse:
+      type: object
+      properties:
+        transcript:
+          type: string
+        response:
+          type: string
+        intent:
+          type: string
+          enum: [navigate, describe, changes, elevator, unknown]
+        confidence:
+          type: number
+        safetyMessage:
+          type: string
+      required: [transcript, response, intent, confidence, safetyMessage]
+
