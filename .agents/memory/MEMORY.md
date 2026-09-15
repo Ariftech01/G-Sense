@@ -1,0 +1,1 @@
+- [ACCESS-X demo mode boundary](demo-mode-boundary.md) — keep simulated perception visibly labeled until a live multimodal provider is configured.

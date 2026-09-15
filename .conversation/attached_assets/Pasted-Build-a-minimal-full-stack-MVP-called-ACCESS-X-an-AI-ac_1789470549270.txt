@@ -1,0 +1,156 @@
+Build a minimal full-stack MVP called ACCESS-X — an AI accessibility assistant for blind and low-vision users.
+
+CORE IDEA:
+Normal visual assistants answer:
+"What do I see?"
+
+ACCESS-X answers:
+"What changed, why does it matter to me, and what should I do next?"
+
+TECH:
+- React + TypeScript + Tailwind for web
+- React Native + Expo for mobile
+- FastAPI backend
+- Supabase database/auth
+- Gemini multimodal AI
+- Browser/Expo speech-to-text and text-to-speech
+- OpenStreetMap/Leaflet for a simple campus map
+
+BUILD ONLY THESE CORE FEATURES:
+
+1. MOBILE APP
+- Simple home screen
+- Camera button
+- Voice assistant button
+- Navigate button
+- What Changed button
+- Accessibility Profile
+
+2. AI CAMERA
+User captures an image.
+Gemini analyzes:
+- obstacles
+- stairs
+- doors
+- elevators
+- people
+- signs
+- pathway status
+
+Return structured JSON:
+{
+  "path_status": "clear/blocked",
+  "obstacles": [],
+  "stairs": false,
+  "elevator": "available/unavailable/unknown",
+  "confidence": 0.0
+}
+
+3. ENVIRONMENT MEMORY
+Store the latest environmental state in Supabase.
+
+When a new observation is made, compare it with the previous observation.
+
+Example:
+Previous: Path clear
+Current: Chair blocking path
+
+Output:
+"Change detected: an obstacle appeared on your route."
+
+4. ACCESSIBILITY PROFILE
+Create simple preferences:
+- Avoid stairs
+- Prefer elevator
+- Avoid crowds
+- Response length
+- Accessibility mode
+
+5. ACCESSIBILITY REASONING
+Combine:
+Current environment + previous environment + user preferences + user goal.
+
+Example:
+User goal: Library
+Preference: Avoid stairs
+Route A: 300m but stairs
+Route B: 450m no stairs
+
+Recommend Route B.
+
+6. VOICE
+Support simple commands:
+"Take me to the library."
+"What is in front of me?"
+"Did anything change?"
+"Where is the elevator?"
+
+Return concise spoken responses.
+
+7. WHAT CHANGED
+Create a screen showing:
+BEFORE → CHANGE → CURRENT STATE → IMPACT → RECOMMENDATION
+
+8. WEB DASHBOARD
+Keep it minimal.
+
+Show:
+- Current environment
+- Detected objects
+- Accessibility state
+- Previous state
+- Detected changes
+- User preferences
+- AI recommendation
+- Confidence score
+
+9. DEMO MODE
+Add a button "Run Demo".
+
+Demo:
+1. Route to Library is clear.
+2. Simulate a chair appearing.
+3. Show CHANGE DETECTED.
+4. Simulate elevator unavailable.
+5. User preference = avoid stairs.
+6. Recommend an alternative route.
+7. Show the complete:
+Environment → Memory → Change → User Preference → Impact → Recommendation
+
+10. SAFETY
+Never claim 100% safety or accuracy.
+Show confidence.
+For low confidence say:
+"Possible obstacle detected. Please verify before proceeding."
+
+Do not permanently store camera images unless necessary.
+Keep API keys server-side.
+
+IMPORTANT:
+Do not build advanced analytics, complex admin systems, YOLO, OCR, offline AI, multiple agents or extra features yet.
+
+Focus on making this small MVP actually work end-to-end.
+
+If a real API is not configured, create a clearly labelled Demo Mode rather than fake real-time AI.
+
+Make the UI clean, minimal, dark, accessible and professional.
+
+The most important workflow is:
+
+CAMERA/VOICE
+↓
+GEMINI
+↓
+ENVIRONMENT STATE
+↓
+MEMORY
+↓
+CHANGE DETECTION
+↓
+USER PREFERENCES
+↓
+ACCESSIBILITY REASONING
+↓
+RECOMMENDATION
+↓
+VOICE/TEXT

@@ -1,6 +1,6 @@
-# [Project name]
+# ACCESS-X
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+ACCESS-X helps blind and low-vision users understand what changed around them, why it matters for their route, and what to do next.
 
 ## Run & Operate
 
@@ -10,6 +10,8 @@ _Replace the heading above with the project's name, and this line with one sente
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string
+- Web preview: `/`
+- Mobile preview: `/access-x-mobile/`
 
 ## Stack
 
@@ -22,15 +24,25 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/access-x-web` — responsive command center, change review, route context, and accessibility profile.
+- `artifacts/access-x-mobile` — Expo companion with camera capture, assistant commands, change review, and preferences.
+- `artifacts/api-server/src/lib/accessx.ts` — environment memory, comparisons, demo scenario, and preference-aware recommendations.
+- `lib/api-spec/openapi.yaml` — source of truth for shared API contracts.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The web and mobile surfaces share the generated OpenAPI client and the same environment/reasoning endpoints.
+- Demo Mode is explicit in the UI and returns a guided chair/elevator scenario; it does not claim live Gemini analysis.
+- Safety copy always frames confidence as an estimate and asks the user to verify before proceeding.
+- The first MVP keeps state in the API process so the core workflow is usable without external service setup; persistence can be added without changing the client contract.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Live environment read with path status, obstacles, stairs, elevator, signs, confidence, and location.
+- BEFORE → CHANGE → CURRENT STATE → IMPACT → RECOMMENDATION review.
+- Preference-aware route guidance, including stair avoidance and elevator preference.
+- Text/voice-style commands for describing the scene, checking changes, finding the elevator, and navigating to the Library.
+- Guided Demo Mode for the complete memory and reasoning flow.
 
 ## User preferences
 

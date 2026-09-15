@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "ACCESS-X Dashboard"
+description = "A calm, high-contrast accessibility command center for blind and low-vision users. It turns environmental observations into change detection, impact, and safer next-step recommendations."
+version = "1.0.0"
+id = "artifacts/access-x-web"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20550
+
+[services.development]
+run = "pnpm --filter @workspace/access-x-web run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/access-x-web", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/access-x-web/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20550"
+BASE_PATH = "/"
