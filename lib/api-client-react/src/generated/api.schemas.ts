@@ -26,6 +26,24 @@ export const EnvironmentStateElevator = {
   unknown: 'unknown',
 } as const;
 
+export type OcrResultDocumentType = typeof OcrResultDocumentType[keyof typeof OcrResultDocumentType];
+
+
+export const OcrResultDocumentType = {
+  sign: 'sign',
+  document: 'document',
+  unknown: 'unknown',
+} as const;
+
+export interface OcrResult {
+  text: string;
+  lines: string[];
+  documentType: OcrResultDocumentType;
+  confidence: number;
+  demoMode: boolean;
+  safetyMessage: string;
+}
+
 export interface EnvironmentState {
   id: string;
   observedAt: string;
@@ -37,6 +55,7 @@ export interface EnvironmentState {
   signs: string[];
   confidence: number;
   locationLabel: string;
+  ocr: OcrResult | null;
 }
 
 export interface DetectedChange {
@@ -138,6 +157,22 @@ export interface ObservationInput {
   signs: string[];
   confidence: number;
   locationLabel: string;
+  ocr?: OcrResult | null;
+}
+
+export type OcrInputMimeType = typeof OcrInputMimeType[keyof typeof OcrInputMimeType];
+
+
+export const OcrInputMimeType = {
+  'image/jpeg': 'image/jpeg',
+  'image/png': 'image/png',
+  'image/webp': 'image/webp',
+} as const;
+
+export interface OcrInput {
+  /** Base64-encoded image bytes. Used transiently for OCR and never persisted. */
+  imageData: string;
+  mimeType: OcrInputMimeType;
 }
 
 export type AssistantCommandInputSource = typeof AssistantCommandInputSource[keyof typeof AssistantCommandInputSource];

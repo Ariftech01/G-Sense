@@ -17,6 +17,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColors } from '@/hooks/useColors';
 import {
   type EnvironmentDashboard,
+  type OcrResult,
+  useCreateObservation,
+  useExtractText,
   useGetEnvironment,
   useRunDemo,
   useSendAssistantCommand,
@@ -34,6 +37,7 @@ const fallbackDashboard: EnvironmentDashboard = {
     signs: [],
     confidence: 0,
     locationLabel: 'Waiting for environment',
+    ocr: null,
   },
   previous: null,
   change: {
@@ -96,6 +100,8 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const environment = useGetEnvironment();
+  const createObservation = useCreateObservation();
+  const extractText = useExtractText();
   const demo = useRunDemo();
   const command = useSendAssistantCommand();
   const [dashboard, setDashboard] = useState<EnvironmentDashboard | null>(null);
@@ -127,11 +133,56 @@ export default function HomeScreen() {
       Alert.alert('Camera permission needed', 'Allow camera access to capture the path ahead.');
       return;
     }
-    const result = await ImagePicker.launchCameraAsync({ quality: 0.7 });
-    if (!result.canceled) {
-      Alert.alert('Demo Mode', 'Image captured. Gemini analysis is not configured yet, so this capture is shown as a demo observation.');
-      runDemo();
+    const result = await ImagePicker.launchCameraAsync({ quality: 0.7, base64: true });
+    const asset = result.canceled ? null : result.assets[0];
+    if (!asset?.base64) {
+      if (!result.canceled) {
+        Alert.alert('Could not read image', 'The captured image did not include readable image data. Please try again.');
+      }
+      return;
     }
+
+    const mimeType =
+      asset.mimeType === 'image/png'
+        ? 'image/png'
+        : asset.mimeType === 'image/webp'
+          ? 'image/webp'
+          : 'image/jpeg';
+
+    extractText.mutate(
+      { data: { imageData: asset.base64, mimeType } },
+      {
+        onSuccess: (ocr: OcrResult) => {
+          createObservation.mutate(
+            {
+              data: {
+                pathStatus: state.current.pathStatus,
+                obstacles: state.current.obstacles,
+                stairs: state.current.stairs,
+                elevator: state.current.elevator,
+                detectedObjects: state.current.detectedObjects,
+                signs: state.current.signs,
+                confidence: state.current.confidence,
+                locationLabel: state.current.locationLabel,
+                ocr,
+              },
+            },
+            {
+              onSuccess: (next) => {
+                setDashboard(next);
+                setLastResponse(ocr.text ? `Read aloud: ${ocr.text}` : 'No readable text was found in the image.');
+                Alert.alert(
+                  ocr.demoMode ? 'Demo OCR' : 'Text read',
+                  ocr.text || 'No readable text was found in the image.',
+                );
+              },
+              onError: () => Alert.alert('Observation unavailable', 'Text was read, but the environment memory could not be updated.'),
+            },
+          );
+        },
+        onError: () => Alert.alert('OCR unavailable', 'The image was captured, but text could not be read. Please try again.'),
+      },
+    );
   };
 
   const sendCommand = () => {
@@ -225,6 +276,29 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        {state.current.ocr && (
+          <View style={[styles.ocrCard, { borderColor: colors.primary, backgroundColor: `${colors.primary}12` }]}>
+            <View style={styles.ocrHeader}>
+              <Ionicons name="scan-outline" size={20} color={colors.primary} />
+              <View style={styles.ocrHeaderText}>
+                <Text style={[styles.sectionLabel, { color: colors.primary }]}>
+                  {state.current.ocr.demoMode ? 'DEMO OCR' : 'TEXT READ'}
+                </Text>
+                <Text style={[styles.ocrType, { color: colors.foreground }]}>
+                  {state.current.ocr.documentType === 'document' ? 'Document' : state.current.ocr.documentType === 'sign' ? 'Sign' : 'Image text'}
+                </Text>
+              </View>
+              <Text style={[styles.ocrConfidence, { color: colors.mutedForeground }]}>
+                {Math.round(state.current.ocr.confidence * 100)}%
+              </Text>
+            </View>
+            <Text style={[styles.ocrText, { color: colors.foreground }]}>
+              {state.current.ocr.text || 'No readable text found.'}
+            </Text>
+            <Text style={[styles.ocrSafety, { color: colors.mutedForeground }]}>{state.current.ocr.safetyMessage}</Text>
+          </View>
+        )}
+
         <View style={styles.actionGrid}>
           <ActionButton primary label="Scan path" icon={<Ionicons name="camera-outline" size={23} color={colors.primaryForeground} />} onPress={capture} />
           <ActionButton label="Ask ACCESS-X" icon={<Ionicons name="mic-outline" size={23} color={colors.primary} />} onPress={() => setShowCommand((value) => !value)} />
@@ -260,7 +334,7 @@ export default function HomeScreen() {
         </Pressable>
 
         <Text style={[styles.safety, { color: colors.mutedForeground }]}>{state.safetyMessage}</Text>
-        {(environment.isLoading || demo.isPending) && <ActivityIndicator color={colors.primary} style={styles.loader} />}
+        {(environment.isLoading || demo.isPending || extractText.isPending || createObservation.isPending) && <ActivityIndicator color={colors.primary} style={styles.loader} />}
       </ScrollView>
     </View>
   );
@@ -301,6 +375,13 @@ const styles = StyleSheet.create({
   recommendationIcon: { width: 38, height: 38, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   recommendationText: { flex: 1, gap: 4 },
   recommendationCopy: { fontSize: 14, lineHeight: 19, fontFamily: 'Inter_600SemiBold' },
+  ocrCard: { borderWidth: 1, borderRadius: 18, padding: 16, gap: 10 },
+  ocrHeader: { flexDirection: 'row', alignItems: 'center', gap: 9 },
+  ocrHeaderText: { flex: 1, gap: 3 },
+  ocrType: { fontSize: 13, fontFamily: 'Inter_600SemiBold' },
+  ocrConfidence: { fontSize: 11, fontFamily: 'Inter_600SemiBold' },
+  ocrText: { fontSize: 18, lineHeight: 25, fontFamily: 'Inter_700Bold' },
+  ocrSafety: { fontSize: 11, lineHeight: 16, fontFamily: 'Inter_400Regular' },
   actionGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   actionButton: { width: '48%', minHeight: 64, borderRadius: 16, borderWidth: 1, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 9 },
   actionLabel: { fontSize: 13, fontFamily: 'Inter_600SemiBold', flexShrink: 1 },

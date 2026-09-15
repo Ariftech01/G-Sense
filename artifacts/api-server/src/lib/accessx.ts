@@ -36,6 +36,7 @@ const stateFromObservation = (observation: Observation): EnvironmentState => ({
   ...observation,
   id: `obs-${Date.now()}-${++observationSequence}`,
   observedAt: new Date(),
+  ocr: observation.ocr ?? null,
 });
 
 let preferences: PreferenceState = { ...defaultPreferences };
@@ -150,6 +151,15 @@ export const runDemoScenario = (): Dashboard => {
     elevator: "unavailable",
     confidence: 0.82,
     detectedObjects: ["chair", "door", "sign"],
+    ocr: {
+      text: "LIBRARY → WEST ENTRANCE",
+      lines: ["LIBRARY →", "WEST ENTRANCE"],
+      documentType: "sign",
+      confidence: 0.82,
+      demoMode: true,
+      safetyMessage:
+        "OCR is simulated in Demo Mode. Confirm the sign or document before acting.",
+    },
   });
   previous = before;
   current = after;

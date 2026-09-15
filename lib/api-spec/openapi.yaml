@@ -60,6 +60,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EnvironmentDashboard"
+  /environment/ocr:
+    post:
+      operationId: extractText
+      tags: [environment]
+      summary: Read text from a captured sign or document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OcrInput"
+      responses:
+        "200":
+          description: Structured OCR result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OcrResult"
   /demo/run:
     post:
       operationId: runDemo
@@ -160,7 +178,30 @@ components:
           type: number
         locationLabel:
           type: string
-      required: [id, observedAt, pathStatus, obstacles, stairs, elevator, detectedObjects, signs, confidence, locationLabel]
+        ocr:
+          anyOf:
+            - $ref: "#/components/schemas/OcrResult"
+            - type: "null"
+      required: [id, observedAt, pathStatus, obstacles, stairs, elevator, detectedObjects, signs, confidence, locationLabel, ocr]
+    OcrResult:
+      type: object
+      properties:
+        text:
+          type: string
+        lines:
+          type: array
+          items:
+            type: string
+        documentType:
+          type: string
+          enum: [sign, document, unknown]
+        confidence:
+          type: number
+        demoMode:
+          type: boolean
+        safetyMessage:
+          type: string
+      required: [text, lines, documentType, confidence, demoMode, safetyMessage]
     DetectedChange:
       type: object
       properties:
@@ -259,7 +300,21 @@ components:
           type: number
         locationLabel:
           type: string
+        ocr:
+          anyOf:
+            - $ref: "#/components/schemas/OcrResult"
+            - type: "null"
       required: [pathStatus, obstacles, stairs, elevator, detectedObjects, signs, confidence, locationLabel]
+    OcrInput:
+      type: object
+      properties:
+        imageData:
+          type: string
+          description: Base64-encoded image bytes. Used transiently for OCR and never persisted.
+        mimeType:
+          type: string
+          enum: [image/jpeg, image/png, image/webp]
+      required: [imageData, mimeType]
     AssistantCommandInput:
       type: object
       properties:

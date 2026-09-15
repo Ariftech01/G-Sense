@@ -4,6 +4,7 @@ import {
   CreateObservationResponse,
   GetEnvironmentResponse,
   GetPreferencesResponse,
+  OcrInput,
   SendAssistantCommandBody,
   SendAssistantCommandResponse,
   RunDemoResponse,
@@ -18,6 +19,7 @@ import {
   saveObservation,
   updatePreferenceState,
 } from "../lib/accessx";
+import { extractTextFromImage } from "../lib/ocr";
 
 const router: IRouter = Router();
 
@@ -32,6 +34,22 @@ router.post("/environment/observations", (req, res): void => {
     return;
   }
   res.status(201).json(CreateObservationResponse.parse(saveObservation(parsed.data)));
+});
+
+router.post("/environment/ocr", async (req, res): Promise<void> => {
+  const parsed = OcrInput.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: parsed.error.message });
+    return;
+  }
+
+  try {
+    res.json(await extractTextFromImage(parsed.data));
+  } catch (error) {
+    res.status(502).json({
+      error: error instanceof Error ? error.message : "OCR service unavailable",
+    });
+  }
 });
 
 router.post("/demo/run", (_req, res): void => {

@@ -7,6 +7,7 @@
  */
 import type { ObservationInputElevator } from './observationInputElevator';
 import type { ObservationInputPathStatus } from './observationInputPathStatus';
+import type { OcrResult } from './ocrResult';
 
 export interface ObservationInput {
   pathStatus: ObservationInputPathStatus;
@@ -17,4 +18,5 @@ export interface ObservationInput {
   signs: string[];
   confidence: number;
   locationLabel: string;
+  ocr?: OcrResult | null;
 }

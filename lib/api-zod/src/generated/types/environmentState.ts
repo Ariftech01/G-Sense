@@ -7,6 +7,7 @@
  */
 import type { EnvironmentStateElevator } from './environmentStateElevator';
 import type { EnvironmentStatePathStatus } from './environmentStatePathStatus';
+import type { OcrResult } from './ocrResult';
 
 export interface EnvironmentState {
   id: string;
@@ -19,4 +20,5 @@ export interface EnvironmentState {
   signs: string[];
   confidence: number;
   locationLabel: string;
+  ocr: OcrResult | null;
 }

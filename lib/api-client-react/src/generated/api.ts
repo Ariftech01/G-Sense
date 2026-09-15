@@ -26,6 +26,8 @@ import type {
   EnvironmentDashboard,
   HealthStatus,
   ObservationInput,
+  OcrInput,
+  OcrResult,
   PreferencesUpdate
 } from './api.schemas';
 
@@ -297,6 +299,94 @@ export const useCreateObservation = <TError = ErrorType<unknown>,
         TContext
       > => {
       return useMutation(getCreateObservationMutationOptions(options));
+    }
+
+export const getExtractTextUrl = () => {
+
+
+
+
+  return `/api/environment/ocr`
+}
+
+/**
+ * @summary Read text from a captured sign or document
+ */
+export const extractText = async (ocrInput: OcrInput, options?: Parameters<typeof customFetch>[1]): Promise<OcrResult> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<OcrResult>(getExtractTextUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(ocrInput)
+  }
+);}
+
+
+
+
+
+export const getExtractTextMutationKey = () => ['extractText'] as const;
+
+export const getExtractTextMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof extractText>>, TError,ExtractTextMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof extractText>>, TError,ExtractTextMutationVariables, TContext> => {
+
+const mutationKey = getExtractTextMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof extractText>>, ExtractTextMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  extractText(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ExtractTextMutationResult = NonNullable<Awaited<ReturnType<typeof extractText>>>
+    export type ExtractTextMutationBody = BodyType<OcrInput>
+    export type ExtractTextMutationError = ErrorType<unknown>
+    export type ExtractTextMutationVariables = {data: BodyType<OcrInput>}
+
+    /**
+ * @summary Read text from a captured sign or document
+ */
+export const useExtractText = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof extractText>>, TError,ExtractTextMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof extractText>>,
+        TError,
+        ExtractTextMutationVariables,
+        TContext
+      > => {
+      return useMutation(getExtractTextMutationOptions(options));
     }
 
 export const getRunDemoUrl = () => {

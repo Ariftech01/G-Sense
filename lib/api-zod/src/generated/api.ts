@@ -31,7 +31,15 @@ export const GetEnvironmentResponse = zod.object({
   "detectedObjects": zod.array(zod.string()),
   "signs": zod.array(zod.string()),
   "confidence": zod.number(),
-  "locationLabel": zod.string()
+  "locationLabel": zod.string(),
+  "ocr": zod.union([zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+}),zod.null()])
 }),
   "previous": zod.union([zod.object({
   "id": zod.string(),
@@ -43,7 +51,15 @@ export const GetEnvironmentResponse = zod.object({
   "detectedObjects": zod.array(zod.string()),
   "signs": zod.array(zod.string()),
   "confidence": zod.number(),
-  "locationLabel": zod.string()
+  "locationLabel": zod.string(),
+  "ocr": zod.union([zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+}),zod.null()])
 }),zod.null()]),
   "change": zod.object({
   "detected": zod.boolean(),
@@ -78,7 +94,15 @@ export const CreateObservationBody = zod.object({
   "detectedObjects": zod.array(zod.string()),
   "signs": zod.array(zod.string()),
   "confidence": zod.number(),
-  "locationLabel": zod.string()
+  "locationLabel": zod.string(),
+  "ocr": zod.union([zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+}),zod.null()]).optional()
 })
 
 export const CreateObservationResponse = zod.object({
@@ -92,7 +116,15 @@ export const CreateObservationResponse = zod.object({
   "detectedObjects": zod.array(zod.string()),
   "signs": zod.array(zod.string()),
   "confidence": zod.number(),
-  "locationLabel": zod.string()
+  "locationLabel": zod.string(),
+  "ocr": zod.union([zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+}),zod.null()])
 }),
   "previous": zod.union([zod.object({
   "id": zod.string(),
@@ -104,7 +136,15 @@ export const CreateObservationResponse = zod.object({
   "detectedObjects": zod.array(zod.string()),
   "signs": zod.array(zod.string()),
   "confidence": zod.number(),
-  "locationLabel": zod.string()
+  "locationLabel": zod.string(),
+  "ocr": zod.union([zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+}),zod.null()])
 }),zod.null()]),
   "change": zod.object({
   "detected": zod.boolean(),
@@ -129,6 +169,24 @@ export const CreateObservationResponse = zod.object({
 
 
 /**
+ * @summary Read text from a captured sign or document
+ */
+export const ExtractTextBody = zod.object({
+  "imageData": zod.string().describe('Base64-encoded image bytes. Used transiently for OCR and never persisted.'),
+  "mimeType": zod.enum(['image/jpeg', 'image/png', 'image/webp'])
+})
+
+export const ExtractTextResponse = zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+})
+
+
+/**
  * @summary Run the guided ACCESS-X demo scenario
  */
 export const RunDemoResponse = zod.object({
@@ -142,7 +200,15 @@ export const RunDemoResponse = zod.object({
   "detectedObjects": zod.array(zod.string()),
   "signs": zod.array(zod.string()),
   "confidence": zod.number(),
-  "locationLabel": zod.string()
+  "locationLabel": zod.string(),
+  "ocr": zod.union([zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+}),zod.null()])
 }),
   "previous": zod.union([zod.object({
   "id": zod.string(),
@@ -154,7 +220,15 @@ export const RunDemoResponse = zod.object({
   "detectedObjects": zod.array(zod.string()),
   "signs": zod.array(zod.string()),
   "confidence": zod.number(),
-  "locationLabel": zod.string()
+  "locationLabel": zod.string(),
+  "ocr": zod.union([zod.object({
+  "text": zod.string(),
+  "lines": zod.array(zod.string()),
+  "documentType": zod.enum(['sign', 'document', 'unknown']),
+  "confidence": zod.number(),
+  "demoMode": zod.boolean(),
+  "safetyMessage": zod.string()
+}),zod.null()])
 }),zod.null()]),
   "change": zod.object({
   "detected": zod.boolean(),
