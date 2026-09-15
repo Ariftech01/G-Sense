@@ -14,8 +14,13 @@ import {
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { setBaseUrl } from '@workspace/api-client-react';
+import { resolveApiBaseUrl } from '@/lib/api-config';
 
-setBaseUrl(`https://${process.env.EXPO_PUBLIC_DOMAIN}`);
+// Resolved once at module scope so every request in the app shares one base
+// URL. `null` means this build has no backend configured; the UI then shows the
+// offline notice instead of calling a `localhost` address that cannot exist on
+// a standalone Android device.
+setBaseUrl(resolveApiBaseUrl());
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

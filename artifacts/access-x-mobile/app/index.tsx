@@ -14,6 +14,7 @@ import {
   View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ConnectionNotice } from '@/components/ConnectionNotice';
 import { useColors } from '@/hooks/useColors';
 import {
   type EnvironmentDashboard,
@@ -38,6 +39,7 @@ const fallbackDashboard: EnvironmentDashboard = {
     confidence: 0,
     locationLabel: 'Waiting for environment',
     ocr: null,
+    spatialContext: null,
   },
   previous: null,
   change: {
@@ -231,6 +233,8 @@ export default function HomeScreen() {
           <Text style={[styles.demoText, { color: colors.accent }]}>DEMO MODE</Text>
           <Text style={[styles.demoCopy, { color: colors.mutedForeground }]}>AI analysis is simulated for this MVP.</Text>
         </View>
+
+        <ConnectionNotice visible={environment.isError} />
 
         <View style={[styles.statusCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <View style={styles.statusTop}>
