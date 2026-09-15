@@ -5,6 +5,7 @@ import {
   ExtractTextBody,
   GetEnvironmentResponse,
   GetPreferencesResponse,
+  OcrInput,
   SendAssistantCommandBody,
   SendAssistantCommandResponse,
   RunDemoResponse,
@@ -12,11 +13,13 @@ import {
   UpdatePreferencesResponse,
 } from "@workspace/api-zod";
 import {
-  answerCommand,
+  analyzeSceneWithGemini,
+  answerCommandWithGemini,
   getDashboard,
+  getObservationHistory,
   getPreferenceState,
   runDemoScenario,
-  saveObservation,
+  saveObservationAsync,
   updatePreferenceState,
 } from "../lib/accessx";
 import { extractTextFromImage } from "../lib/ocr";
@@ -27,13 +30,73 @@ router.get("/environment", (_req, res): void => {
   res.json(GetEnvironmentResponse.parse(getDashboard()));
 });
 
-router.post("/environment/observations", (req, res): void => {
-  const parsed = CreateObservationBody.safeParse(req.body);
+router.get("/environment/history", (_req, res): void => {
+  res.json({
+    history: getObservationHistory(),
+  });
+});
+
+router.post("/environment/observations", async (req, res): Promise<void> => {
+  const bodyData = req.body as Record<string, unknown>;
+  const imageData = typeof bodyData?.imageData === "string" ? bodyData.imageData : null;
+  const mimeType = typeof bodyData?.mimeType === "string" ? bodyData.mimeType : "image/jpeg";
+
+  let isLive = false;
+  let inputData: any;
+
+  if (imageData) {
+    try {
+      const geminiObservation = await analyzeSceneWithGemini(imageData, mimeType);
+      inputData = {
+        ...geminiObservation,
+        ...(typeof bodyData === "object" && bodyData !== null ? bodyData : {}),
+      };
+      isLive = true;
+    } catch (err) {
+      console.warn("Gemini multimodal scene analysis error, using fallback observation data:", err);
+      const parsed = CreateObservationBody.safeParse(req.body);
+      if (!parsed.success) {
+        res.status(400).json({ error: parsed.error.message });
+        return;
+      }
+      inputData = parsed.data;
+    }
+  } else {
+    const parsed = CreateObservationBody.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ error: parsed.error.message });
+      return;
+    }
+    inputData = parsed.data;
+  }
+
+  const updatedDashboard = await saveObservationAsync(inputData, isLive);
+  res.status(201).json(CreateObservationResponse.parse(updatedDashboard));
+});
+
+router.post("/environment/analyze", async (req, res): Promise<void> => {
+  const parsed = ExtractTextBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  res.status(201).json(CreateObservationResponse.parse(saveObservation(parsed.data)));
+
+  try {
+    const observation = await analyzeSceneWithGemini(parsed.data.imageData, parsed.data.mimeType);
+    let ocrResult = null;
+    try {
+      ocrResult = await extractTextFromImage(parsed.data);
+    } catch (ocrErr) {
+      console.warn("OCR extraction skipped during scene analysis:", ocrErr);
+    }
+    observation.ocr = ocrResult;
+    const dashboard = await saveObservationAsync(observation, true);
+    res.json(CreateObservationResponse.parse(dashboard));
+  } catch (error) {
+    res.status(502).json({
+      error: error instanceof Error ? error.message : "Multimodal scene analysis failed",
+    });
+  }
 });
 
 router.post("/environment/ocr", async (req, res): Promise<void> => {
@@ -69,13 +132,13 @@ router.patch("/preferences", (req, res): void => {
   res.json(UpdatePreferencesResponse.parse(updatePreferenceState(parsed.data)));
 });
 
-router.post("/assistant/command", (req, res): void => {
+router.post("/assistant/command", async (req, res): Promise<void> => {
   const parsed = SendAssistantCommandBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const answer = answerCommand(parsed.data.command);
+  const answer = await answerCommandWithGemini(parsed.data.command);
   res.json(
     SendAssistantCommandResponse.parse({
       transcript: parsed.data.command,
@@ -83,7 +146,7 @@ router.post("/assistant/command", (req, res): void => {
       intent: answer.intent,
       confidence: currentConfidence(),
       safetyMessage:
-        "This response is an assistive estimate. Verify before acting.",
+        answer.safetyMessage || "This response is an assistive estimate. Verify before acting.",
     }),
   );
 });

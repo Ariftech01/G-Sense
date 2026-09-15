@@ -72,7 +72,10 @@ const parseGeminiOcr = (raw: string): OcrResult => {
 export const extractTextFromImage = async (
   input: OcrInput,
 ): Promise<OcrResult> => {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey =
+    process.env.GEMINI_API_KEY ||
+    process.env.GOOGLE_API_KEY ||
+    process.env.GEMINI_KEY;
   if (!apiKey) return demoOcrResult();
 
   const imageData = input.imageData.replace(/^data:[^;]+;base64,/, "");

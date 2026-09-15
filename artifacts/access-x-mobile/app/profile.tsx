@@ -25,7 +25,7 @@ export default function ProfileScreen() {
         <Pressable accessibilityLabel="Go back" onPress={() => router.back()} style={styles.back}><Feather name="arrow-left" size={21} color={colors.foreground} /></Pressable>
         <Text style={[styles.title, { color: colors.foreground }]}>Accessibility profile</Text>
       </View>
-      <Text style={[styles.description, { color: colors.mutedForeground }]}>ACCESS-X uses these preferences to explain impact and choose the safer route for your goal.</Text>
+      <Text style={[styles.description, { color: colors.mutedForeground }]}>G Sense uses these preferences to explain impact and choose the safer route for your goal.</Text>
       {current ? (
         <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
           {[

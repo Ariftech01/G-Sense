@@ -3,7 +3,7 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: ACCESS-X accessibility assistant API
+  description: G Sense accessibility assistant API
 servers:
   - url: /api
     description: Base API path
@@ -82,7 +82,7 @@ paths:
     post:
       operationId: runDemo
       tags: [environment]
-      summary: Run the guided ACCESS-X demo scenario
+      summary: Run the guided G Sense demo scenario
       responses:
         "200":
           description: Completed demo state

@@ -210,9 +210,9 @@ export default function HomeScreen() {
           <View>
             <View style={styles.brandRow}>
               <View style={[styles.brandMark, { backgroundColor: colors.primary }]}>
-                <Text style={[styles.brandMarkText, { color: colors.primaryForeground }]}>X</Text>
+                <Text style={[styles.brandMarkText, { color: colors.primaryForeground }]}>G</Text>
               </View>
-              <Text style={[styles.wordmark, { color: colors.foreground }]}>ACCESS-X</Text>
+              <Text style={[styles.wordmark, { color: colors.foreground }]}>G Sense</Text>
             </View>
             <Text style={[styles.eyebrow, { color: colors.mutedForeground }]}>ENVIRONMENT AWARENESS</Text>
           </View>
@@ -301,7 +301,7 @@ export default function HomeScreen() {
 
         <View style={styles.actionGrid}>
           <ActionButton primary label="Scan path" icon={<Ionicons name="camera-outline" size={23} color={colors.primaryForeground} />} onPress={capture} />
-          <ActionButton label="Ask ACCESS-X" icon={<Ionicons name="mic-outline" size={23} color={colors.primary} />} onPress={() => setShowCommand((value) => !value)} />
+          <ActionButton label="Ask G Sense" icon={<Ionicons name="mic-outline" size={23} color={colors.primary} />} onPress={() => setShowCommand((value) => !value)} />
           <ActionButton label="What changed" icon={<Ionicons name="git-compare-outline" size={23} color={colors.primary} />} onPress={() => router.push('/changes')} />
           <ActionButton label="Navigate" icon={<Ionicons name="navigate-outline" size={23} color={colors.primary} />} onPress={() => setLastResponse('Navigation goal: Library. ' + state.recommendation)} />
         </View>

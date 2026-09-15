@@ -1,6 +1,6 @@
-# ACCESS-X
+# G Sense
 
-ACCESS-X helps blind and low-vision users understand what changed around them, why it matters for their route, and what to do next.
+G Sense helps blind and low-vision users understand what changed around them, why it matters for their route, and what to do next.
 
 ## Run & Operate
 

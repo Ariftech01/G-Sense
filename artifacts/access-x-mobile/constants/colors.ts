@@ -14,57 +14,63 @@
 
 const colors = {
   light: {
-    text: '#F4F8F7',
-    tint: '#62E6C2',
+    text: '#0F172A',
+    tint: '#1565C0',
 
-    background: '#081A1D',
-    foreground: '#F4F8F7',
+    background: '#FFFFFF',
+    foreground: '#0F172A',
 
-    card: '#102B2E',
-    cardForeground: '#F4F8F7',
+    card: '#FFFFFF',
+    cardForeground: '#0F172A',
 
-    primary: '#62E6C2',
-    primaryForeground: '#081A1D',
+    primary: '#1565C0',
+    primaryForeground: '#FFFFFF',
 
-    secondary: '#17383A',
-    secondaryForeground: '#D9EFEB',
+    secondary: '#E3F2FD',
+    secondaryForeground: '#0D47A1',
 
-    muted: '#17383A',
-    mutedForeground: '#9CB8B4',
+    muted: '#F5FAFF',
+    mutedForeground: '#475569',
 
-    accent: '#F3B562',
-    accentForeground: '#081A1D',
+    accent: '#E3F2FD',
+    accentForeground: '#0D47A1',
 
-    destructive: '#FF756B',
-    destructiveForeground: '#081A1D',
+    destructive: '#DC2626',
+    destructiveForeground: '#FFFFFF',
 
-    border: '#285052',
-    input: '#285052',
+    border: '#D7E3F0',
+    input: '#D7E3F0',
   },
   dark: {
-    text: '#F4F8F7',
-    tint: '#62E6C2',
-    background: '#081A1D',
-    foreground: '#F4F8F7',
-    card: '#102B2E',
-    cardForeground: '#F4F8F7',
-    primary: '#62E6C2',
-    primaryForeground: '#081A1D',
-    secondary: '#17383A',
-    secondaryForeground: '#D9EFEB',
-    muted: '#17383A',
-    mutedForeground: '#9CB8B4',
-    accent: '#F3B562',
-    accentForeground: '#081A1D',
-    destructive: '#FF756B',
-    destructiveForeground: '#081A1D',
-    border: '#285052',
-    input: '#285052',
+    text: '#0F172A',
+    tint: '#1565C0',
+
+    background: '#FFFFFF',
+    foreground: '#0F172A',
+
+    card: '#FFFFFF',
+    cardForeground: '#0F172A',
+
+    primary: '#1565C0',
+    primaryForeground: '#FFFFFF',
+
+    secondary: '#E3F2FD',
+    secondaryForeground: '#0D47A1',
+
+    muted: '#F5FAFF',
+    mutedForeground: '#475569',
+
+    accent: '#E3F2FD',
+    accentForeground: '#0D47A1',
+
+    destructive: '#DC2626',
+    destructiveForeground: '#FFFFFF',
+
+    border: '#D7E3F0',
+    input: '#D7E3F0',
   },
 
-  // Border radius (in px). Sync from the sibling web artifact's --radius
-  // CSS variable. This value applies to cards, buttons, inputs, and modals.
-  radius: 8,
+  radius: 12,
 };
 
 export default colors;
