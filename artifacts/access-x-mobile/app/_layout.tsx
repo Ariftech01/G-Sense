@@ -11,10 +11,14 @@ import {
   Inter_700Bold,
   useFonts,
 } from '@expo-google-fonts/inter';
+import { LogBox } from 'react-native';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { setBaseUrl } from '@workspace/api-client-react';
 import { resolveApiBaseUrl } from '@/lib/api-config';
+
+// Ignore benign HMR dev connection warnings when Wi-Fi fluctuates or screen locks
+LogBox.ignoreLogs(['Cannot connect to Expo CLI', 'WebSocket']);
 
 // Resolved once at module scope so every request in the app shares one base
 // URL. `null` means this build has no backend configured; the UI then shows the
@@ -31,8 +35,12 @@ function RootLayoutNav() {
   return (
     <Stack screenOptions={{ headerBackTitle: 'Back' }}>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="scan" options={{ headerShown: false }} />
+      <Stack.Screen name="offline-scan" options={{ headerShown: false }} />
       <Stack.Screen name="profile" options={{ headerShown: false }} />
       <Stack.Screen name="changes" options={{ headerShown: false }} />
+      <Stack.Screen name="map" options={{ headerShown: false }} />
+      <Stack.Screen name="communicator" options={{ headerShown: false }} />
     </Stack>
   );
 }

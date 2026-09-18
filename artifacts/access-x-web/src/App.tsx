@@ -84,6 +84,7 @@ const fallbackEnvironment: EnvironmentDashboard = {
     confidence: 0.91,
     locationLabel: 'North quad · west approach',
     ocr: null,
+    spatialContext: null,
   },
   previous: null,
   change: {
@@ -498,38 +499,35 @@ function NotFound() {
 
 function JudgePage() {
   const environment = useGetEnvironment();
-  const preferences = useGetPreferences();
-  const runDemo = useRunDemo();
-  const createObservation = useCreateObservation();
   const updatePreferences = useUpdatePreferences();
 
-  const dashboard = environment.data ?? fallbackEnvironment;
+  const dashboard = (environment.data ?? fallbackEnvironment) as EnvironmentDashboard & {
+    spokenSummary?: string;
+    pipeline?: string[];
+    aiConfigured?: boolean;
+    aiModel?: string | null;
+    reasoning?: { impact: string; reason: string; recommendedAction: string; spokenSummary: string } | null;
+  };
 
   const triggerStep1 = () => {
-    createObservation.mutate({
-      data: {
-        pathStatus: 'clear',
-        obstacles: [],
-        stairs: false,
-        elevator: 'available',
-        detectedObjects: ['door', 'sign'],
-        signs: ['Library →'],
-        confidence: 0.95,
-        locationLabel: 'North Quad corridor',
-      },
-    }, { onSuccess: (next) => queryClient.setQueryData(['/api/environment'], next) });
+    fetch('/api/demo/step', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ step: 'clear' }) })
+      .then((response) => response.json())
+      .then((next) => queryClient.setQueryData(['/api/environment'], next));
   };
 
   const triggerStep2 = () => {
-    runDemo.mutate(undefined, {
-      onSuccess: (next) => queryClient.setQueryData(['/api/environment'], next),
-    });
+    fetch('/api/demo/step', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ step: 'obstacle' }) })
+      .then((response) => response.json())
+      .then((next) => queryClient.setQueryData(['/api/environment'], next));
   };
 
   const triggerStep3 = () => {
-    updatePreferences.mutate({
-      data: { avoidStairs: true, preferElevator: true, goal: 'Library West Entrance' },
-    }, { onSuccess: (next) => queryClient.setQueryData(['/api/preferences'], next) });
+    fetch('/api/demo/step', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ step: 'elevator' }) })
+      .then((response) => response.json())
+      .then((next) => {
+        queryClient.setQueryData(['/api/environment'], next);
+        updatePreferences.mutate({ data: { avoidStairs: true, preferElevator: true, goal: 'Library' } });
+      });
   };
 
   return (
@@ -545,6 +543,26 @@ function JudgePage() {
         }
       />
 
+      <div className="mb-8 overflow-x-auto rounded-[1.3rem] border border-primary/30 bg-card p-5">
+        <div className="eyebrow mb-3 text-primary">Technical pipeline</div>
+        <div className="flex min-w-[720px] items-center gap-2">
+          {(dashboard.pipeline ?? ['CAMERA','GEMINI VISION','STRUCTURED STATE','ENVIRONMENT MEMORY','CHANGE DETECTION','USER PROFILE','ACCESSIBILITY ENGINE','RECOMMENDATION','TTS']).map((step, index, all) => (
+            <div key={step} className="flex items-center gap-2">
+              <div className="rounded-xl border border-primary/30 bg-primary/10 px-3 py-2 text-center">
+                <div className="font-mono text-[10px] font-bold tracking-wide text-primary">{step}</div>
+              </div>
+              {index < all.length - 1 && <ArrowRight size={14} className="text-muted-foreground" />}
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-4 text-xs">
+          <div className="rounded-xl border border-border p-3"><div className="text-muted-foreground">Before</div><div className="mt-1 font-medium">{dashboard.change.before}</div></div>
+          <div className="rounded-xl border border-border p-3"><div className="text-muted-foreground">Change</div><div className="mt-1 font-medium">{dashboard.change.change}</div></div>
+          <div className="rounded-xl border border-accent/30 bg-accent/5 p-3"><div className="text-muted-foreground">Impact</div><div className="mt-1 font-medium">{dashboard.reasoning?.reason || dashboard.change.impact}</div></div>
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-3"><div className="text-muted-foreground">Recommendation</div><div className="mt-1 font-medium">{dashboard.recommendation}</div></div>
+        </div>
+      </div>
+
       <div className="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
         <section className="rounded-[1.3rem] border border-primary/30 bg-card p-6 shadow-xs">
           <div className="mb-4 flex items-center justify-between">
@@ -558,10 +576,10 @@ function JudgePage() {
             <div className="rounded-xl border border-border p-4 bg-background/60">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-bold">1. Baseline Clear Read (T<sub>n-1</sub>)</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">Logs initial clear pathway state to environmental memory.</div>
+                  <div className="text-sm font-bold">1. Baseline clear path</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">DEMO: path clear, elevator available.</div>
                 </div>
-                <button type="button" onClick={triggerStep1} disabled={createObservation.isPending} className="rounded-lg bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground hover:brightness-110">
+                <button type="button" onClick={triggerStep1} className="rounded-lg bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground hover:brightness-110">
                   Run Step 1
                 </button>
               </div>
@@ -570,10 +588,10 @@ function JudgePage() {
             <div className="rounded-xl border border-border p-4 bg-background/60">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-bold">2. Trigger Obstacle & Elevator Outage (T<sub>n</sub>)</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">Introduces barrier & chair, triggering temporal change detection.</div>
+                  <div className="text-sm font-bold">2. Simulate obstacle (chair)</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">DEMO: chair blocks the corridor. Change detection fires.</div>
                 </div>
-                <button type="button" onClick={triggerStep2} disabled={runDemo.isPending} className="rounded-lg bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground hover:brightness-110">
+                <button type="button" onClick={triggerStep2} className="rounded-lg bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground hover:brightness-110">
                   Run Step 2
                 </button>
               </div>
@@ -582,8 +600,8 @@ function JudgePage() {
             <div className="rounded-xl border border-border p-4 bg-background/60">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-bold">3. Apply Accessibility Preferences</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">Sets avoidStairs=true and goal to adapt route guidance.</div>
+                  <div className="text-sm font-bold">3. Simulate elevator unavailable</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">DEMO: high accessibility impact and alternate route.</div>
                 </div>
                 <button type="button" onClick={triggerStep3} disabled={updatePreferences.isPending} className="rounded-lg bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground hover:brightness-110">
                   Run Step 3
@@ -609,7 +627,7 @@ function JudgePage() {
               </div>
               <div className="flex justify-between text-xs py-2 border-b border-border">
                 <span className="text-muted-foreground">Active Model Engine:</span>
-                <span className="font-bold text-foreground">Gemini 2.5 Flash Multimodal</span>
+                <span className="font-bold text-foreground">{dashboard.aiModel || (dashboard.demoMode ? 'Demo engine' : 'Gemini multimodal')}</span>
               </div>
               <div className="flex justify-between text-xs py-2 border-b border-border">
                 <span className="text-muted-foreground">Confidence Score:</span>

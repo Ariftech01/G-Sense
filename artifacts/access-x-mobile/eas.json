@@ -16,6 +16,9 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "PNPM_MIN_RELEASE_AGE": "0"
       }
     },
     "production": {

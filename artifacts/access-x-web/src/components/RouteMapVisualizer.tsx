@@ -22,9 +22,9 @@ export function RouteMapVisualizer({ dashboard, onCenter }: RouteMapVisualizerPr
     headingDegrees: 34,
     clockDirections: {
       ahead: dashboard.current.obstacles.length ? `${dashboard.current.obstacles.join(', ')} at 12 o'clock` : 'Path clear ahead',
-      right: 'Fountain turn point at 3 o'clock',
-      left: 'West quad lawn at 9 o'clock',
-      behind: 'North corridor entrance at 6 o'clock',
+      right: "Fountain turn point at 3 o'clock",
+      left: "West quad lawn at 9 o'clock",
+      behind: "North corridor entrance at 6 o'clock",
     },
   };
 

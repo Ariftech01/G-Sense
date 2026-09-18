@@ -1,8 +1,7 @@
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
-import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -15,12 +14,17 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ConnectionNotice } from '@/components/ConnectionNotice';
+import { VoiceAssistantSheet } from '@/components/VoiceAssistantSheet';
 import { useColors } from '@/hooks/useColors';
+import { startAudioRecording, requestAudioPermission, readAudioFileAsBase64 } from '@/lib/audio-recorder';
+import { transcribeAudio, type LiveDashboard, spokenFromDashboard, uint8ArrayToBase64 } from '@/lib/gsense-api';
+import { repeatLastSpeech, speakText, stopSpeech } from '@/lib/speech';
+import { OFFLINE_MESSAGE } from '@/lib/api-config';
+import { useAIMode, askLlamaOffline } from '@/lib/offline';
+import { executeVoiceCommand, parseVoiceIntent } from '@/lib/voice-navigator';
+import { useHandsFreeVoice } from '@/lib/hands-free-voice';
 import {
   type EnvironmentDashboard,
-  type OcrResult,
-  useCreateObservation,
-  useExtractText,
   useGetEnvironment,
   useRunDemo,
   useSendAssistantCommand,
@@ -101,26 +105,56 @@ export default function HomeScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { mode, isOffline, setMode, toggleMode } = useAIMode();
   const environment = useGetEnvironment();
-  const createObservation = useCreateObservation();
-  const extractText = useExtractText();
   const demo = useRunDemo();
   const command = useSendAssistantCommand();
   const [dashboard, setDashboard] = useState<EnvironmentDashboard | null>(null);
   const [commandText, setCommandText] = useState('');
   const [showCommand, setShowCommand] = useState(false);
   const [lastResponse, setLastResponse] = useState('');
+  const [recording, setRecording] = useState(false);
+  const [voiceAssistantOpen, setVoiceAssistantOpen] = useState(false);
+  const [handsFreeEnabled, setHandsFreeEnabled] = useState(true);
+  const micStopFnRef = useRef<(() => Promise<string | null>) | null>(null);
+  const hasGreetedRef = useRef(false);
+  const live = dashboard as LiveDashboard | null;
+
+  // Continuous Hands-Free Voice Listener (Activated on Home Screen)
+  const { isListening, lastHeard, statusMessage } = useHandsFreeVoice({
+    enabled: handsFreeEnabled && !voiceAssistantOpen,
+    router,
+    isOffline,
+    setMode,
+    onWakeDetected: () => {
+      setVoiceAssistantOpen(true);
+    },
+  });
 
   useEffect(() => {
     if (environment.data) setDashboard(environment.data);
   }, [environment.data]);
+
+  // Request Microphone Permissions First on Mount and Speak Greeting
+  useEffect(() => {
+    if (!hasGreetedRef.current) {
+      hasGreetedRef.current = true;
+      // Prompt for microphone permissions first as requested by user
+      void requestAudioPermission().then((granted) => {
+        const welcome = granted
+          ? 'G Sense is ready. Say Hey G Sense, tap Speak For Me, or use Live Captions.'
+          : 'Welcome to G Sense. Please allow microphone access for hands-free voice assistance.';
+        void speakText(welcome);
+      });
+    }
+  }, [isOffline]);
 
   const state = dashboard ?? fallbackDashboard;
 
   // Guards against presenting placeholder environment data as a real reading.
   // Without this, an unreachable backend would still report "Path looks clear",
   // which is unsafe for a screen-reader user.
-  const isEnvironmentUnavailable = environment.isError && dashboard === null;
+  const isEnvironmentUnavailable = !isOffline && environment.isError && dashboard === null;
 
   const confidenceLabel = useMemo(
     () => `${Math.round(state.current.confidence * 100)}% confidence`,
@@ -130,82 +164,139 @@ export default function HomeScreen() {
   const runDemo = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     demo.mutate(undefined, {
-      onSuccess: (next) => setDashboard(next),
+      onSuccess: (next) => {
+        setDashboard(next);
+        const spoken = spokenFromDashboard(next as LiveDashboard);
+        setLastResponse(spoken);
+        void speakText(`Demo mode. ${spoken}`, { force: true });
+      },
       onError: () => Alert.alert('Demo unavailable', 'Please check the connection and try again.'),
     });
   };
 
-  const capture = async () => {
-    const permission = await ImagePicker.requestCameraPermissionsAsync();
-    if (!permission.granted) {
-      Alert.alert('Camera permission needed', 'Allow camera access to capture the path ahead.');
+  const capture = () => {
+    router.push('/scan' as never);
+  };
+
+  const sendCommand = async (value = commandText.trim(), source: 'voice' | 'text' = 'text') => {
+    if (!value) return;
+
+    // Check for voice navigation intents first (e.g. "scan the area", "navigate me", "where is elevator")
+    const parsedIntent = parseVoiceIntent(value, isOffline);
+    if (parsedIntent.type !== 'unknown' && parsedIntent.type !== 'wake' && parsedIntent.targetRoute) {
+      setCommandText('');
+      await executeVoiceCommand({
+        command: value,
+        router,
+        isOffline,
+        setMode,
+      });
       return;
     }
-    const result = await ImagePicker.launchCameraAsync({ quality: 0.7, base64: true });
-    const asset = result.canceled ? null : result.assets[0];
-    if (!asset?.base64) {
-      if (!result.canceled) {
-        Alert.alert('Could not read image', 'The captured image did not include readable image data. Please try again.');
+
+    if (isOffline) {
+      // OFFLINE ROUTING: 100% on-device Llama 3.2 local reasoning
+      setCommandText('');
+      try {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        const offlineResult = await askLlamaOffline(value, {
+          userProfile: state.preferences,
+        });
+        setLastResponse(offlineResult.response);
+        void speakText(offlineResult.response, { force: true });
+      } catch {
+        const fallbackMsg = "I don't have enough local information to answer that.";
+        setLastResponse(fallbackMsg);
+        void speakText(fallbackMsg, { force: true });
       }
       return;
     }
 
-    const mimeType =
-      asset.mimeType === 'image/png'
-        ? 'image/png'
-        : asset.mimeType === 'image/webp'
-          ? 'image/webp'
-          : 'image/jpeg';
-
-    extractText.mutate(
-      { data: { imageData: asset.base64, mimeType } },
-      {
-        onSuccess: (ocr: OcrResult) => {
-          createObservation.mutate(
-            {
-              data: {
-                pathStatus: state.current.pathStatus,
-                obstacles: state.current.obstacles,
-                stairs: state.current.stairs,
-                elevator: state.current.elevator,
-                detectedObjects: state.current.detectedObjects,
-                signs: state.current.signs,
-                confidence: state.current.confidence,
-                locationLabel: state.current.locationLabel,
-                ocr,
-              },
-            },
-            {
-              onSuccess: (next) => {
-                setDashboard(next);
-                setLastResponse(ocr.text ? `Read aloud: ${ocr.text}` : 'No readable text was found in the image.');
-                Alert.alert(
-                  ocr.demoMode ? 'Demo OCR' : 'Text read',
-                  ocr.text || 'No readable text was found in the image.',
-                );
-              },
-              onError: () => Alert.alert('Observation unavailable', 'Text was read, but the environment memory could not be updated.'),
-            },
-          );
-        },
-        onError: () => Alert.alert('OCR unavailable', 'The image was captured, but text could not be read. Please try again.'),
-      },
-    );
-  };
-
-  const sendCommand = () => {
-    const value = commandText.trim();
-    if (!value) return;
+    // ONLINE ROUTING: Remote API
     command.mutate(
-      { data: { command: value, source: 'voice' } },
+      { data: { command: value, source } },
       {
         onSuccess: (response) => {
           setLastResponse(response.response);
           setCommandText('');
+          void speakText(response.response, { force: true });
         },
-        onError: () => setLastResponse('The assistant could not process that request. Try again.'),
+        onError: () => {
+          // Automatic offline fallback offer
+          Alert.alert(
+            'Connection Unavailable',
+            'Cloud AI is unavailable. G Sense has an on-device Llama 3.2 offline mode available. Switch to Offline Mode?',
+            [
+              { text: 'Cancel', style: 'cancel' },
+              {
+                text: 'Use Offline Mode',
+                onPress: async () => {
+                  await setMode('offline');
+                  void sendCommand(value, source);
+                },
+              },
+            ]
+          );
+          const message = OFFLINE_MESSAGE;
+          setLastResponse(message);
+          void speakText(message, { force: true });
+        },
       },
     );
+  };
+
+  const inputRef = useRef<TextInput>(null);
+
+  const toggleRecording = async () => {
+    try {
+      if (recording) {
+        const stopFn = micStopFnRef.current;
+        micStopFnRef.current = null;
+        setRecording(false);
+        if (!stopFn) return;
+
+        const uri = await stopFn();
+        if (!uri) return;
+
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        const base64 = await readAudioFileAsBase64(uri);
+        const { transcript } = await transcribeAudio(base64, 'audio/mp4');
+        if (transcript && transcript.trim()) {
+          setCommandText(transcript);
+          void sendCommand(transcript, 'voice');
+        } else {
+          Alert.alert('No speech heard', 'Please try speaking again.');
+        }
+        return;
+      }
+
+      const result = await startAudioRecording();
+      if (!result.ok) {
+        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+        Alert.alert(
+          'Microphone Needed',
+          'Please allow microphone permission to speak to G Sense.',
+          [
+            { text: 'Cancel', style: 'cancel' },
+            {
+              text: 'Allow Mic',
+              onPress: async () => {
+                const granted = await requestAudioPermission();
+                if (granted) void toggleRecording();
+              },
+            },
+          ],
+        );
+        return;
+      }
+
+      micStopFnRef.current = result.stop;
+      setRecording(true);
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    } catch (err) {
+      setRecording(false);
+      console.warn('[toggleRecording] Error:', err);
+    }
   };
 
   return (
@@ -234,38 +325,101 @@ export default function HomeScreen() {
           </Pressable>
         </View>
 
-        <View style={[styles.demoBanner, { borderColor: colors.accent, backgroundColor: `${colors.accent}18` }]}>
-          <View style={[styles.demoDot, { backgroundColor: colors.accent }]} />
-          <Text style={[styles.demoText, { color: colors.accent }]}>DEMO MODE</Text>
-          <Text style={[styles.demoCopy, { color: colors.mutedForeground }]}>AI analysis is simulated for this MVP.</Text>
+        {/* Primary Online / Offline Mode Switcher */}
+        <View style={[styles.modeCard, { backgroundColor: isOffline ? '#1E293B' : colors.card, borderColor: isOffline ? '#38BDF8' : colors.border }]}>
+          <View style={styles.modeTextGroup}>
+            <View style={[styles.modeDot, { backgroundColor: isOffline ? '#38BDF8' : '#22C55E' }]} />
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.modeTitle, { color: isOffline ? '#F8FAFC' : colors.foreground }]}>
+                {isOffline ? 'OFFLINE MODE (Local AI)' : 'ONLINE MODE (Connected AI)'}
+              </Text>
+              <Text style={[styles.modeSub, { color: isOffline ? '#94A3B8' : colors.mutedForeground }]}>
+                {isOffline ? 'Llama 3.2 • 0 Network Calls • Airplane Mode Ready' : 'Gemini Multimodal Vision via Server'}
+              </Text>
+            </View>
+          </View>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={isOffline ? 'Switch to Online Mode' : 'Switch to Offline Mode'}
+            onPress={toggleMode}
+            style={({ pressed }) => [
+              styles.modeSwitchBtn,
+              {
+                backgroundColor: isOffline ? '#38BDF8' : colors.secondary,
+                opacity: pressed ? 0.75 : 1,
+              },
+            ]}
+          >
+            <Text style={[styles.modeSwitchBtnText, { color: isOffline ? '#0F172A' : colors.foreground }]}>
+              {isOffline ? 'Go Online' : 'Go Offline'}
+            </Text>
+          </Pressable>
         </View>
 
-        <ConnectionNotice visible={environment.isError} />
+        {isOffline ? (
+          <View style={[styles.demoBanner, { borderColor: '#38BDF8', backgroundColor: '#38BDF818' }]}>
+            <View style={[styles.demoDot, { backgroundColor: '#38BDF8' }]} />
+            <Text style={[styles.demoText, { color: '#38BDF8' }]}>OFFLINE LLaMA 3.2</Text>
+            <Text style={[styles.demoCopy, { color: colors.mutedForeground }]}>All reasoning is computed locally on this phone.</Text>
+          </View>
+        ) : state.demoMode ? (
+          <View style={[styles.demoBanner, { borderColor: colors.accent, backgroundColor: `${colors.accent}18` }]}>
+            <View style={[styles.demoDot, { backgroundColor: colors.accent }]} />
+            <Text style={[styles.demoText, { color: colors.accent }]}>DEMO MODE</Text>
+            <Text style={[styles.demoCopy, { color: colors.mutedForeground }]}>Simulated environment — not live camera AI.</Text>
+          </View>
+        ) : (
+          <View style={[styles.demoBanner, { borderColor: colors.primary, backgroundColor: `${colors.primary}18` }]}>
+            <View style={[styles.demoDot, { backgroundColor: colors.primary }]} />
+            <Text style={[styles.demoText, { color: colors.primary }]}>LIVE AI</Text>
+            <Text style={[styles.demoCopy, { color: colors.mutedForeground }]}>Gemini vision via the G Sense backend.</Text>
+          </View>
+        )}
+
+        {live?.aiConfigured === false && !isOffline && (
+          <View style={[styles.demoBanner, { borderColor: colors.destructive, backgroundColor: `${colors.destructive}14` }]}>
+            <Feather name="key" size={14} color={colors.destructive} />
+            <Text style={[styles.demoCopy, { color: colors.foreground }]}>GEMINI_API_KEY is missing on the backend. Live analysis will not be faked.</Text>
+          </View>
+        )}
+
+        <ConnectionNotice visible={environment.isError && !isOffline} />
 
         <View style={[styles.statusCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <View style={styles.statusTop}>
             <View>
-              <Text style={[styles.sectionLabel, { color: colors.mutedForeground }]}>CURRENT ENVIRONMENT</Text>
-              <Text style={[styles.location, { color: colors.foreground }]}>{state.current.locationLabel}</Text>
+              <Text style={[styles.sectionLabel, { color: colors.mutedForeground }]}>
+                {isOffline ? 'LOCAL ENVIRONMENT' : 'CURRENT ENVIRONMENT'}
+              </Text>
+              <Text style={[styles.location, { color: colors.foreground }]}>
+                {isOffline ? 'On-Device Spatial Engine' : state.current.locationLabel}
+              </Text>
             </View>
             <View style={[styles.confidencePill, { backgroundColor: colors.secondary }]}>
-              <View style={[styles.confidenceDot, { backgroundColor: state.current.confidence > 0.7 ? colors.primary : colors.accent }]} />
-              <Text style={[styles.confidenceText, { color: colors.foreground }]}>{confidenceLabel}</Text>
+              <View style={[styles.confidenceDot, { backgroundColor: isOffline ? '#38BDF8' : (state.current.confidence > 0.7 ? colors.primary : colors.accent) }]} />
+              <Text style={[styles.confidenceText, { color: colors.foreground }]}>
+                {isOffline ? 'Offline Llama 3.2' : confidenceLabel}
+              </Text>
             </View>
           </View>
           <Text style={[styles.statusTitle, { color: colors.foreground }]}>
-            {isEnvironmentUnavailable
+            {isOffline
+              ? 'Offline Mode Active'
+              : isEnvironmentUnavailable
               ? 'Environment data unavailable'
               : state.current.pathStatus === 'blocked'
                 ? 'Path needs attention'
                 : 'Path looks clear'}
           </Text>
           <Text style={[styles.body, { color: colors.mutedForeground }]}>
-            {isEnvironmentUnavailable
+            {isOffline
+              ? 'Local on-device reasoning engine is active. Tap Offline Scan to examine your path or Ask G Sense below.'
+              : isEnvironmentUnavailable
               ? 'Reconnect to the G Sense service to analyse the route ahead.'
-              : state.current.obstacles.length
-                ? `${state.current.obstacles.join(', ')} detected ahead.`
-                : 'No obstacles detected in the current frame.'}
+              : live?.spokenSummary ||
+                (state.current.obstacles.length
+                  ? `${state.current.obstacles.join(', ')} affecting the path ahead.`
+                  : 'Scan the environment to identify obstacles, signs, and path impact.')}
           </Text>
           {!isEnvironmentUnavailable && (
             <View style={styles.chipRow}>
@@ -319,32 +473,161 @@ export default function HomeScreen() {
           </View>
         )}
 
+        {/* "Hey G Sense" Accessible Voice Assistant Hero Banner */}
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={`Hey G Sense Voice Assistant. Status: ${statusMessage}. Tap to activate voice assistant or speak directly.`}
+          accessibilityHint="Voice activation is live. Speak commands like scan the area or navigate me."
+          onPress={() => {
+            void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            setVoiceAssistantOpen(true);
+          }}
+          style={({ pressed }) => [
+            styles.voiceAssistantBanner,
+            {
+              backgroundColor: isOffline ? '#1E293B' : colors.primary,
+              borderColor: isOffline ? '#38BDF8' : colors.primary,
+              opacity: pressed ? 0.88 : 1,
+            },
+          ]}
+        >
+          <View style={styles.voiceAssistantLeft}>
+            <View style={[styles.voiceMicBadge, { backgroundColor: isOffline ? '#38BDF8' : '#FFFFFF' }]}>
+              <Ionicons
+                name={isListening ? 'mic' : 'mic-outline'}
+                size={22}
+                color={isOffline ? '#0F172A' : (isListening ? '#EF4444' : colors.primary)}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <View style={[styles.voiceLiveDotSmall, { backgroundColor: isListening ? '#22C55E' : '#94A3B8' }]} />
+                <Text style={[styles.voiceBannerTitle, { color: isOffline ? '#F8FAFC' : colors.primaryForeground }]}>
+                  🎙️ "Hey G Sense" Voice Assistant
+                </Text>
+              </View>
+              <Text style={[styles.voiceBannerSub, { color: isOffline ? '#94A3B8' : `${colors.primaryForeground}E6` }]}>
+                {lastHeard
+                  ? `Heard: "${lastHeard}"`
+                  : isListening
+                  ? 'Voice Active: Say "Hey G Sense", "Scan", or "Navigate"'
+                  : 'Voice Assistant Ready • Tap to speak'}
+              </Text>
+            </View>
+          </View>
+          <Feather
+            name="chevron-right"
+            size={22}
+            color={isOffline ? '#38BDF8' : colors.primaryForeground}
+          />
+        </Pressable>
+
         <View style={styles.actionGrid}>
-          <ActionButton primary label="Scan path" icon={<Ionicons name="camera-outline" size={23} color={colors.primaryForeground} />} onPress={capture} />
-          <ActionButton label="Ask G Sense" icon={<Ionicons name="mic-outline" size={23} color={colors.primary} />} onPress={() => setShowCommand((value) => !value)} />
+          <ActionButton
+            primary={!isOffline}
+            label="Scan environment"
+            icon={<Ionicons name="camera-outline" size={23} color={!isOffline ? colors.primaryForeground : colors.primary} />}
+            onPress={capture}
+          />
+          <ActionButton
+            primary={isOffline}
+            label="Offline Scan"
+            icon={<MaterialCommunityIcons name="camera-iris" size={23} color={isOffline ? colors.primaryForeground : '#38BDF8'} />}
+            onPress={() => router.push('/offline-scan')}
+          />
+          <ActionButton
+            label="Ask G Sense"
+            icon={<Ionicons name="mic-outline" size={23} color={colors.primary} />}
+            onPress={() => setVoiceAssistantOpen(true)}
+          />
+          <ActionButton
+            label="Speak For Me"
+            icon={<Ionicons name="volume-high-outline" size={23} color={colors.primary} />}
+            onPress={() => router.push('/communicator')}
+          />
+          <ActionButton
+            label="Live Captions"
+            icon={<MaterialCommunityIcons name="ear-hearing" size={23} color={colors.primary} />}
+            onPress={() => router.push('/communicator')}
+          />
           <ActionButton label="What changed" icon={<Ionicons name="git-compare-outline" size={23} color={colors.primary} />} onPress={() => router.push('/changes')} />
-          <ActionButton label="Navigate" icon={<Ionicons name="navigate-outline" size={23} color={colors.primary} />} onPress={() => setLastResponse('Navigation goal: Library. ' + state.recommendation)} />
+          <ActionButton label="Navigate" icon={<Ionicons name="navigate-outline" size={23} color={colors.primary} />} onPress={() => {
+            const spoken = `Navigation goal: ${state.preferences.goal}. ${state.recommendation}`;
+            setLastResponse(spoken);
+            void speakText(spoken, { force: true });
+            router.push('/map');
+          }} />
         </View>
 
         {showCommand && (
           <View style={[styles.commandBox, { borderColor: colors.border, backgroundColor: colors.card }]}>
-            <Text style={[styles.commandHint, { color: colors.mutedForeground }]}>Try “What is in front of me?” or “Where is the elevator?”</Text>
+            <Text style={[styles.commandHint, { color: colors.mutedForeground }]}>
+              Ask by voice or tap a quick question:
+            </Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingVertical: 4 }}>
+              {[
+                'Where is the elevator?',
+                'Is my path clear?',
+                'What is in front of me?',
+                'Read visible signs',
+                'How do I reach the Library?',
+              ].map((query) => (
+                <Pressable
+                  key={query}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Ask: ${query}`}
+                  onPress={() => {
+                    setCommandText(query);
+                    sendCommand(query, 'voice');
+                  }}
+                  style={({ pressed }) => [
+                    styles.chipButton,
+                    {
+                      backgroundColor: pressed ? colors.primary : colors.secondary,
+                      borderColor: colors.border,
+                    },
+                  ]}
+                >
+                  <Text style={[styles.chipText, { color: colors.foreground }]}>
+                    🎙️ {query}
+                  </Text>
+                </Pressable>
+              ))}
+            </ScrollView>
             <View style={styles.commandRow}>
               <TextInput
+                ref={inputRef}
                 accessibilityLabel="Assistant command"
                 value={commandText}
                 onChangeText={setCommandText}
-                onSubmitEditing={sendCommand}
-                placeholder="Type a command"
+                onSubmitEditing={() => sendCommand()}
+                placeholder="Type or speak using keyboard mic..."
                 placeholderTextColor={colors.mutedForeground}
                 style={[styles.commandInput, { color: colors.foreground, borderColor: colors.border }]}
                 returnKeyType="send"
               />
-              <Pressable accessibilityRole="button" accessibilityLabel="Send command" onPress={sendCommand} style={[styles.sendButton, { backgroundColor: colors.primary }]}>
+              <Pressable accessibilityRole="button" accessibilityLabel={recording ? 'Stop recording' : 'Record voice'} onPress={() => void toggleRecording()} style={[styles.sendButton, { backgroundColor: recording ? colors.accent : colors.secondary }]}>
+                <Ionicons name={recording ? 'stop' : 'mic'} size={18} color={recording ? colors.accentForeground : colors.primary} />
+              </Pressable>
+              <Pressable accessibilityRole="button" accessibilityLabel="Send command" onPress={() => sendCommand()} style={[styles.sendButton, { backgroundColor: colors.primary }]}>
                 <Feather name="arrow-up" size={18} color={colors.primaryForeground} />
               </Pressable>
             </View>
             {lastResponse ? <Text style={[styles.response, { color: colors.primary }]}>{lastResponse}</Text> : null}
+            <View style={{ flexDirection: 'row', gap: 8 }}>
+              <Pressable onPress={() => speakText(lastResponse || spokenFromDashboard(state as LiveDashboard), { force: true })} style={[styles.demoButton, { flex: 1 }]}>
+                <Ionicons name="volume-high-outline" size={18} color={colors.primary} />
+                <Text style={[styles.demoButtonText, { color: colors.foreground }]}>Play</Text>
+              </Pressable>
+              <Pressable onPress={stopSpeech} style={[styles.demoButton, { flex: 1 }]}>
+                <Ionicons name="pause-outline" size={18} color={colors.primary} />
+                <Text style={[styles.demoButtonText, { color: colors.foreground }]}>Stop</Text>
+              </Pressable>
+              <Pressable onPress={repeatLastSpeech} style={[styles.demoButton, { flex: 1 }]}>
+                <Ionicons name="refresh-outline" size={18} color={colors.primary} />
+                <Text style={[styles.demoButtonText, { color: colors.foreground }]}>Repeat</Text>
+              </Pressable>
+            </View>
           </View>
         )}
 
@@ -354,8 +637,17 @@ export default function HomeScreen() {
         </Pressable>
 
         <Text style={[styles.safety, { color: colors.mutedForeground }]}>{state.safetyMessage}</Text>
-        {(environment.isLoading || demo.isPending || extractText.isPending || createObservation.isPending) && <ActivityIndicator color={colors.primary} style={styles.loader} />}
+        {(environment.isLoading || demo.isPending || command.isPending) && <ActivityIndicator color={colors.primary} style={styles.loader} />}
       </ScrollView>
+
+      {/* Accessible Voice Assistant Sheet */}
+      <VoiceAssistantSheet
+        visible={voiceAssistantOpen}
+        onClose={() => setVoiceAssistantOpen(false)}
+        router={router}
+        isOffline={isOffline}
+        setMode={setMode}
+      />
     </View>
   );
 }
@@ -413,6 +705,50 @@ const styles = StyleSheet.create({
   response: { fontSize: 13, lineHeight: 19, fontFamily: 'Inter_600SemiBold' },
   demoButton: { minHeight: 50, borderWidth: 1, borderRadius: 15, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 },
   demoButtonText: { fontSize: 14, fontFamily: 'Inter_600SemiBold' },
+  chipButton: { paddingVertical: 7, paddingHorizontal: 12, borderRadius: 16, borderWidth: 1 },
+  modeCard: { borderWidth: 1.5, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  modeTextGroup: { flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1 },
+  modeDot: { width: 10, height: 10, borderRadius: 5 },
+  modeTitle: { fontSize: 13, fontFamily: 'Inter_700Bold' },
+  modeSub: { fontSize: 11, fontFamily: 'Inter_400Regular', marginTop: 2 },
+  modeSwitchBtn: { paddingVertical: 8, paddingHorizontal: 14, borderRadius: 12 },
+  modeSwitchBtnText: { fontSize: 12, fontFamily: 'Inter_700Bold' },
+  voiceAssistantBanner: {
+    borderWidth: 1.5,
+    borderRadius: 18,
+    padding: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  voiceAssistantLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    flex: 1,
+  },
+  voiceMicBadge: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  voiceBannerTitle: {
+    fontSize: 15,
+    fontFamily: 'Inter_700Bold',
+  },
+  voiceBannerSub: {
+    fontSize: 11,
+    fontFamily: 'Inter_400Regular',
+    marginTop: 2,
+  },
+  voiceLiveDotSmall: {
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
+  },
   safety: { textAlign: 'center', fontSize: 11, lineHeight: 16, paddingHorizontal: 10, fontFamily: 'Inter_400Regular' },
   loader: { marginTop: 2 },
 });

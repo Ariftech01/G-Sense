@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "4b53cb4b-83be-4892-847c-3fb426a4c681"
+      }
+    },
+    "android": {
+      "package": "com.beyonder_dev.workspace"
+    }
+  }
+}

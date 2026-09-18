@@ -6,13 +6,32 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useGetEnvironment } from '@workspace/api-client-react';
 import { useColors } from '@/hooks/useColors';
 
+type RouteContext = {
+  waypoints: Array<{
+    id: string;
+    label: string;
+    type: string;
+    x: number;
+    y: number;
+    status: 'clear' | 'blocked' | 'caution';
+  }>;
+  currentPoint: { x: number; y: number };
+  headingDegrees: number;
+  clockDirections: {
+    ahead: string;
+    right: string;
+    left: string;
+    behind: string;
+  };
+};
+
 export default function RouteContextScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const environment = useGetEnvironment();
 
   const current = environment.data?.current;
-  const spatial = current?.spatialContext ?? {
+  const spatial: RouteContext = (current as { spatialContext?: RouteContext } | undefined)?.spatialContext ?? {
     waypoints: [
       { id: 'wp-origin', label: 'Current Position', type: 'origin', x: 50, y: 85, status: 'clear' },
       { id: 'wp-barrier', label: current?.obstacles[0] || 'Barrier', type: 'barrier', x: 50, y: 45, status: current?.pathStatus === 'blocked' ? 'blocked' : 'clear' },
@@ -23,9 +42,9 @@ export default function RouteContextScreen() {
     headingDegrees: 34,
     clockDirections: {
       ahead: current?.obstacles.length ? `${current.obstacles.join(', ')} at 12 o'clock` : 'Path clear ahead',
-      right: 'Fountain turn point at 3 o'clock',
-      left: 'West quad lawn at 9 o'clock',
-      behind: 'North corridor entrance at 6 o'clock',
+      right: "Fountain turn point at 3 o'clock",
+      left: "West quad lawn at 9 o'clock",
+      behind: "North corridor entrance at 6 o'clock",
     },
   };
 

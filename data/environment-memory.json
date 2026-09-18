@@ -1,0 +1,5936 @@
+{
+  "preferences": {
+    "avoidStairs": true,
+    "preferElevator": true,
+    "avoidCrowds": true,
+    "responseLength": "standard",
+    "accessibilityMode": "screen-reader",
+    "goal": "Library",
+    "visionMode": "blind",
+    "language": "English",
+    "voiceEnabled": true,
+    "monitoringIntervalMs": 8000,
+    "confidenceThreshold": 0.7,
+    "assistiveMode": false,
+    "storeRawImages": false
+  },
+  "current": {
+    "pathStatus": "blocked",
+    "pathDetail": "partially_blocked",
+    "obstacles": [
+      "snacks"
+    ],
+    "stairs": false,
+    "elevator": "unknown",
+    "detectedObjects": [
+      "laptop",
+      "laptop",
+      "water bottle",
+      "snacks",
+      "desk",
+      "person"
+    ],
+    "signs": [],
+    "confidence": 0.85,
+    "locationLabel": "Indoor office workspace desk",
+    "scene": "office desk with laptops and clutter",
+    "crowdLevel": "low",
+    "lighting": "normal",
+    "spokenHint": "You are at a desk with two laptops and some snacks directly in front of you; the path away from the desk appears clear.",
+    "vision": {
+      "scene": "office desk with laptops and clutter",
+      "objects": [
+        {
+          "type": "laptop",
+          "position": "left",
+          "distance": "near",
+          "relevance": "high"
+        },
+        {
+          "type": "laptop",
+          "position": "right",
+          "distance": "near",
+          "relevance": "high"
+        },
+        {
+          "type": "water bottle",
+          "position": "center",
+          "distance": "near",
+          "relevance": "medium"
+        },
+        {
+          "type": "snacks",
+          "position": "center",
+          "distance": "near",
+          "relevance": "medium"
+        },
+        {
+          "type": "desk",
+          "position": "center",
+          "distance": "near",
+          "relevance": "high"
+        },
+        {
+          "type": "person",
+          "position": "background",
+          "distance": "far",
+          "relevance": "low"
+        }
+      ],
+      "obstacles": [
+        {
+          "type": "snacks",
+          "severity": "low",
+          "position": "center"
+        }
+      ],
+      "stairs": {
+        "detected": false,
+        "confidence": 0
+      },
+      "door": {
+        "detected": false,
+        "confidence": 0,
+        "state": "unknown"
+      },
+      "elevator": {
+        "detected": false,
+        "confidence": 0,
+        "status": "unknown"
+      },
+      "text": [],
+      "crowd_level": "low",
+      "path_status": "clear",
+      "lighting": "normal",
+      "accessibility_state": {
+        "accessible_path": true,
+        "obstacle_level": "low"
+      },
+      "confidence": 0.85,
+      "locationLabel": "Indoor office workspace desk",
+      "spokenHint": "You are at a desk with two laptops and some snacks directly in front of you; the path away from the desk appears clear."
+    },
+    "ocr": null,
+    "id": "obs-1789539830320-13",
+    "observedAt": "2026-09-16T06:23:50.320Z",
+    "spatialContext": {
+      "waypoints": [
+        {
+          "id": "wp-origin",
+          "label": "Current Position",
+          "type": "origin",
+          "x": 50,
+          "y": 85,
+          "status": "clear"
+        },
+        {
+          "id": "wp-barrier",
+          "label": "snacks",
+          "type": "barrier",
+          "x": 50,
+          "y": 45,
+          "status": "blocked"
+        },
+        {
+          "id": "wp-fountain",
+          "label": "Fountain Turn",
+          "type": "turn",
+          "x": 75,
+          "y": 55,
+          "status": "clear"
+        },
+        {
+          "id": "wp-elevator",
+          "label": "Elevator Lobby",
+          "type": "elevator",
+          "x": 75,
+          "y": 25,
+          "status": "clear"
+        },
+        {
+          "id": "wp-destination",
+          "label": "Library",
+          "type": "destination",
+          "x": 75,
+          "y": 10,
+          "status": "clear"
+        }
+      ],
+      "currentPoint": {
+        "x": 50,
+        "y": 85
+      },
+      "headingDegrees": 34,
+      "clockDirections": {
+        "ahead": "snacks at 12 o'clock (Blocked)",
+        "right": "Fountain turn point at 3 o'clock",
+        "left": "West quad lawn at 9 o'clock",
+        "behind": "North corridor entrance at 6 o'clock"
+      }
+    }
+  },
+  "previous": {
+    "pathStatus": "clear",
+    "pathDetail": "clear",
+    "obstacles": [],
+    "stairs": false,
+    "elevator": "unknown",
+    "detectedObjects": [
+      "laptop",
+      "mouse",
+      "phone"
+    ],
+    "signs": [],
+    "confidence": 0.85,
+    "locationLabel": "desk with laptop and mouse",
+    "scene": "desk setup",
+    "crowdLevel": "none",
+    "lighting": "normal",
+    "spokenHint": "You are at a desk with a laptop and mouse nearby. No obstacles detected on your immediate path.",
+    "vision": {
+      "scene": "desk setup",
+      "objects": [
+        {
+          "type": "laptop",
+          "position": "left",
+          "distance": "near",
+          "relevance": "low"
+        },
+        {
+          "type": "mouse",
+          "position": "right",
+          "distance": "near",
+          "relevance": "low"
+        },
+        {
+          "type": "phone",
+          "position": "top right",
+          "distance": "near",
+          "relevance": "low"
+        }
+      ],
+      "obstacles": [],
+      "stairs": {
+        "detected": false,
+        "confidence": 0
+      },
+      "door": {
+        "detected": false,
+        "confidence": 0,
+        "state": "unknown"
+      },
+      "elevator": {
+        "detected": false,
+        "confidence": 0,
+        "status": "unknown"
+      },
+      "text": [],
+      "crowd_level": "none",
+      "path_status": "clear",
+      "lighting": "normal",
+      "accessibility_state": {
+        "accessible_path": true,
+        "obstacle_level": "none"
+      },
+      "confidence": 0.85,
+      "locationLabel": "desk with laptop and mouse",
+      "spokenHint": "You are at a desk with a laptop and mouse nearby. No obstacles detected on your immediate path."
+    },
+    "ocr": null,
+    "id": "obs-1789539820264-12",
+    "observedAt": "2026-09-16T06:23:40.264Z",
+    "spatialContext": {
+      "waypoints": [
+        {
+          "id": "wp-origin",
+          "label": "Current Position",
+          "type": "origin",
+          "x": 50,
+          "y": 85,
+          "status": "clear"
+        },
+        {
+          "id": "wp-mid",
+          "label": "Midway Corridor",
+          "type": "turn",
+          "x": 50,
+          "y": 50,
+          "status": "clear"
+        },
+        {
+          "id": "wp-destination",
+          "label": "Library",
+          "type": "destination",
+          "x": 50,
+          "y": 15,
+          "status": "clear"
+        }
+      ],
+      "currentPoint": {
+        "x": 50,
+        "y": 85
+      },
+      "headingDegrees": 0,
+      "clockDirections": {
+        "ahead": "Direct path toward destination at 12 o'clock in this frame",
+        "right": "East arcade at 3 o'clock",
+        "left": "West garden at 9 o'clock",
+        "behind": "North entrance at 6 o'clock"
+      }
+    }
+  },
+  "history": [
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "backpack",
+        "chair"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "backpack",
+        "chair",
+        "water bottle",
+        "desk"
+      ],
+      "signs": [
+        "SUSTAINVERSE",
+        "COLLEGE OF ENGINEERING"
+      ],
+      "confidence": 0.85,
+      "locationLabel": "Computer Laboratory Room",
+      "scene": "computer laboratory",
+      "crowdLevel": "medium",
+      "lighting": "normal",
+      "spokenHint": "You are in a computer lab with narrow aisles; watch out for a backpack on the floor to your left and chairs narrowing the path ahead.",
+      "vision": {
+        "scene": "computer laboratory",
+        "objects": [
+          {
+            "type": "backpack",
+            "position": "left-center",
+            "distance": "mid",
+            "relevance": "high"
+          },
+          {
+            "type": "chair",
+            "position": "right-center",
+            "distance": "mid",
+            "relevance": "high"
+          },
+          {
+            "type": "water bottle",
+            "position": "center",
+            "distance": "near",
+            "relevance": "low"
+          },
+          {
+            "type": "desk",
+            "position": "center",
+            "distance": "mid",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "backpack",
+            "severity": "medium",
+            "position": "left-center"
+          },
+          {
+            "type": "chair",
+            "severity": "medium",
+            "position": "right-center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [
+          {
+            "content": "SUSTAINVERSE",
+            "kind": "sign",
+            "meaning": "event poster or informational display on back wall"
+          },
+          {
+            "content": "COLLEGE OF ENGINEERING",
+            "kind": "sign",
+            "meaning": "institutional notice boards on back wall"
+          }
+        ],
+        "crowd_level": "medium",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Computer Laboratory Room",
+        "spokenHint": "You are in a computer lab with narrow aisles; watch out for a backpack on the floor to your left and chairs narrowing the path ahead."
+      },
+      "ocr": {
+        "text": "SUSTAINVERSE\nCOLLEGE OF ENGINEERING",
+        "lines": [
+          "SUSTAINVERSE",
+          "COLLEGE OF ENGINEERING"
+        ],
+        "documentType": "sign",
+        "confidence": 0.85,
+        "demoMode": false,
+        "safetyMessage": "OCR can misread text. Confirm the sign or document before acting."
+      },
+      "id": "obs-1789533679576-11",
+      "observedAt": "2026-09-16T04:41:19.576Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "backpack",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "backpack, chair at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "laptop"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "smartphone"
+      ],
+      "signs": [
+        "package.json"
+      ],
+      "confidence": 0.85,
+      "locationLabel": "desk with open laptop",
+      "scene": "desk workspace with laptops",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "You are at a desk with a laptop directly in front of you.",
+      "vision": {
+        "scene": "desk workspace with laptops",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "smartphone",
+            "position": "left",
+            "distance": "near",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "laptop",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [
+          {
+            "content": "package.json",
+            "kind": "sign",
+            "meaning": "code editor file indicator"
+          }
+        ],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "desk with open laptop",
+        "spokenHint": "You are at a desk with a laptop directly in front of you."
+      },
+      "ocr": {
+        "text": "package.json",
+        "lines": [
+          "package.json"
+        ],
+        "documentType": "sign",
+        "confidence": 0.85,
+        "demoMode": false,
+        "safetyMessage": "OCR can misread text. Confirm the sign or document before acting."
+      },
+      "id": "obs-1789533700261-12",
+      "observedAt": "2026-09-16T04:41:40.261Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "laptop",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "laptop at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "available",
+      "detectedObjects": [
+        "door",
+        "sign"
+      ],
+      "signs": [
+        "Library →"
+      ],
+      "confidence": 0.94,
+      "locationLabel": "Block A Corridor",
+      "scene": "Block A Corridor",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "",
+      "vision": {
+        "scene": "Block A Corridor",
+        "objects": [
+          {
+            "type": "door",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          },
+          {
+            "type": "sign",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0.94
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": true,
+          "status": "available",
+          "confidence": 0.94
+        },
+        "text": [
+          {
+            "content": "Library →",
+            "kind": "sign"
+          }
+        ],
+        "crowd_level": "low",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.94,
+        "locationLabel": "Block A Corridor"
+      },
+      "ocr": {
+        "text": "Library →",
+        "lines": [
+          "Library →"
+        ],
+        "documentType": "sign",
+        "confidence": 0.94,
+        "demoMode": false,
+        "safetyMessage": "OCR can misread text. Confirm the sign before acting."
+      },
+      "id": "obs-1789533742675-13",
+      "observedAt": "2026-09-16T04:42:22.675Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [
+        "chair"
+      ],
+      "stairs": false,
+      "elevator": "unavailable",
+      "detectedObjects": [
+        "chair",
+        "door",
+        "sign"
+      ],
+      "signs": [
+        "LIBRARY → WEST ENTRANCE"
+      ],
+      "confidence": 0.82,
+      "locationLabel": "Block A Corridor",
+      "scene": "Block A Corridor",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "",
+      "vision": {
+        "scene": "Block A Corridor",
+        "objects": [
+          {
+            "type": "chair",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          },
+          {
+            "type": "door",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          },
+          {
+            "type": "sign",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "chair",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0.82
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": true,
+          "status": "unavailable",
+          "confidence": 0.82
+        },
+        "text": [
+          {
+            "content": "LIBRARY → WEST ENTRANCE",
+            "kind": "sign"
+          }
+        ],
+        "crowd_level": "low",
+        "path_status": "blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.82,
+        "locationLabel": "Block A Corridor"
+      },
+      "ocr": {
+        "text": "LIBRARY → WEST ENTRANCE",
+        "lines": [
+          "LIBRARY →",
+          "WEST ENTRANCE"
+        ],
+        "documentType": "sign",
+        "confidence": 0.82,
+        "demoMode": true,
+        "safetyMessage": "OCR is simulated in Demo Mode. Confirm the sign or document before acting."
+      },
+      "id": "obs-1789533742679-14",
+      "observedAt": "2026-09-16T04:42:22.679Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "chair",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "caution"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "chair at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "laptop"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "person",
+        "laptop"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "Indoor room with desks",
+      "scene": "Indoor room with people and desks",
+      "crowdLevel": "low",
+      "lighting": "bright",
+      "spokenHint": "Caution, a desk with a laptop is directly in front of you.",
+      "vision": {
+        "scene": "Indoor room with people and desks",
+        "objects": [
+          {
+            "type": "person",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "laptop",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "low",
+        "path_status": "partially_blocked",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Indoor room with desks",
+        "spokenHint": "Caution, a desk with a laptop is directly in front of you."
+      },
+      "ocr": null,
+      "id": "obs-1789533776615-15",
+      "observedAt": "2026-09-16T04:42:56.615Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "laptop",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "laptop at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "desk",
+        "chair",
+        "person"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "Computer laboratory workspace",
+      "scene": "Computer lab",
+      "crowdLevel": "medium",
+      "lighting": "bright",
+      "spokenHint": "Computer desk and laptop directly ahead blocking your immediate path in this crowded room.",
+      "vision": {
+        "scene": "Computer lab",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "desk",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "chair",
+            "position": "right",
+            "distance": "medium",
+            "relevance": "medium"
+          },
+          {
+            "type": "person",
+            "position": "left",
+            "distance": "medium",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "medium",
+        "path_status": "partially_blocked",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Computer laboratory workspace",
+        "spokenHint": "Computer desk and laptop directly ahead blocking your immediate path in this crowded room."
+      },
+      "ocr": null,
+      "id": "obs-1789533781680-16",
+      "observedAt": "2026-09-16T04:43:01.680Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "computer",
+        "keyboard",
+        "mouse"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor computer desk area",
+      "scene": "indoor workspace view",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "You are facing a desk with a computer monitor and keyboard.",
+      "vision": {
+        "scene": "indoor workspace view",
+        "objects": [
+          {
+            "type": "computer",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "keyboard",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "mouse",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor computer desk area",
+        "spokenHint": "You are facing a desk with a computer monitor and keyboard."
+      },
+      "ocr": null,
+      "id": "obs-1789533785844-17",
+      "observedAt": "2026-09-16T04:43:05.844Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "computer mouse"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor desk with laptop",
+      "scene": "desk workspace",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "You are facing a desk with a laptop and computer equipment.",
+      "vision": {
+        "scene": "desk workspace",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "computer mouse",
+            "position": "right",
+            "distance": "near",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor desk with laptop",
+        "spokenHint": "You are facing a desk with a laptop and computer equipment."
+      },
+      "ocr": null,
+      "id": "obs-1789533791115-18",
+      "observedAt": "2026-09-16T04:43:11.115Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.2,
+      "locationLabel": "camera lens blocked or dark",
+      "scene": "obscured camera view",
+      "crowdLevel": "none",
+      "lighting": "dark",
+      "spokenHint": "Camera view is completely obscured, please check the lens.",
+      "vision": {
+        "scene": "obscured camera view",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "blocked",
+        "lighting": "dark",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "high"
+        },
+        "confidence": 0.2,
+        "locationLabel": "camera lens blocked or dark",
+        "spokenHint": "Camera view is completely obscured, please check the lens."
+      },
+      "ocr": null,
+      "id": "obs-1789533796940-19",
+      "observedAt": "2026-09-16T04:43:16.940Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "Barrier",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "Path blocked ahead",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "person"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "person",
+        "laptop"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor study or office space",
+      "scene": "indoor study room or office",
+      "crowdLevel": "low",
+      "lighting": "bright",
+      "spokenHint": "Caution, a person is working at a desk directly ahead, partially blocking the pathway.",
+      "vision": {
+        "scene": "indoor study room or office",
+        "objects": [
+          {
+            "type": "person",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "person",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "low",
+        "path_status": "partially_blocked",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor study or office space",
+        "spokenHint": "Caution, a person is working at a desk directly ahead, partially blocking the pathway."
+      },
+      "ocr": null,
+      "id": "obs-1789533999140-20",
+      "observedAt": "2026-09-16T04:46:39.140Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "person",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "person at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "chair",
+        "desk"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "Indoor computer lab setting",
+      "scene": "computer lab",
+      "crowdLevel": "medium",
+      "lighting": "normal",
+      "spokenHint": "Caution, desks and chairs are directly ahead blocking the path in this computer lab.",
+      "vision": {
+        "scene": "computer lab",
+        "objects": [
+          {
+            "type": "chair",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "desk",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "medium",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Indoor computer lab setting",
+        "spokenHint": "Caution, desks and chairs are directly ahead blocking the path in this computer lab."
+      },
+      "ocr": null,
+      "id": "obs-1789534007876-21",
+      "observedAt": "2026-09-16T04:46:47.876Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk and computer equipment"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "monitor",
+        "chair"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "Computer workstation desk area",
+      "scene": "Computer lab or workstation area",
+      "crowdLevel": "low",
+      "lighting": "bright",
+      "spokenHint": "Caution, a desk with a laptop directly blocks your immediate path.",
+      "vision": {
+        "scene": "Computer lab or workstation area",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "monitor",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "chair",
+            "position": "right",
+            "distance": "medium",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk and computer equipment",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "low",
+        "path_status": "partially_blocked",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Computer workstation desk area",
+        "spokenHint": "Caution, a desk with a laptop directly blocks your immediate path."
+      },
+      "ocr": null,
+      "id": "obs-1789534016184-22",
+      "observedAt": "2026-09-16T04:46:56.184Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk and computer equipment",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk and computer equipment at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "person",
+        "desk"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor study room area",
+      "scene": "office or study room",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "Caution, a desk is directly in front of you blocking your path.",
+      "vision": {
+        "scene": "office or study room",
+        "objects": [
+          {
+            "type": "person",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "desk",
+            "position": "foreground",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "high",
+            "position": "foreground"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "low",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "high"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor study room area",
+        "spokenHint": "Caution, a desk is directly in front of you blocking your path."
+      },
+      "ocr": null,
+      "id": "obs-1789536638167-23",
+      "observedAt": "2026-09-16T05:30:38.167Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "desk",
+        "chair"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor office desk space",
+      "scene": "office desk and computer lab",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "Path blocked. A desk is immediately in front of you.",
+      "vision": {
+        "scene": "office desk and computer lab",
+        "objects": [
+          {
+            "type": "desk",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "chair",
+            "position": "center",
+            "distance": "medium",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "high",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "low",
+        "path_status": "blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "high"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor office desk space",
+        "spokenHint": "Path blocked. A desk is immediately in front of you."
+      },
+      "ocr": null,
+      "id": "obs-1789537727773-24",
+      "observedAt": "2026-09-16T05:48:47.773Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "available",
+      "detectedObjects": [
+        "door",
+        "sign"
+      ],
+      "signs": [
+        "Library →"
+      ],
+      "confidence": 0.94,
+      "locationLabel": "Block A Corridor",
+      "scene": "Block A Corridor",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "",
+      "vision": {
+        "scene": "Block A Corridor",
+        "objects": [
+          {
+            "type": "door",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          },
+          {
+            "type": "sign",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0.94
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": true,
+          "status": "available",
+          "confidence": 0.94
+        },
+        "text": [
+          {
+            "content": "Library →",
+            "kind": "sign"
+          }
+        ],
+        "crowd_level": "low",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.94,
+        "locationLabel": "Block A Corridor"
+      },
+      "ocr": {
+        "text": "Library →",
+        "lines": [
+          "Library →"
+        ],
+        "documentType": "sign",
+        "confidence": 0.94,
+        "demoMode": false,
+        "safetyMessage": "OCR can misread text. Confirm the sign before acting."
+      },
+      "id": "obs-1789538245488-25",
+      "observedAt": "2026-09-16T05:57:25.488Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [
+        "chair"
+      ],
+      "stairs": false,
+      "elevator": "unavailable",
+      "detectedObjects": [
+        "chair",
+        "door",
+        "sign"
+      ],
+      "signs": [
+        "LIBRARY → WEST ENTRANCE"
+      ],
+      "confidence": 0.82,
+      "locationLabel": "Block A Corridor",
+      "scene": "Block A Corridor",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "",
+      "vision": {
+        "scene": "Block A Corridor",
+        "objects": [
+          {
+            "type": "chair",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          },
+          {
+            "type": "door",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          },
+          {
+            "type": "sign",
+            "position": "unknown",
+            "distance": "unknown",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "chair",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0.82
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": true,
+          "status": "unavailable",
+          "confidence": 0.82
+        },
+        "text": [
+          {
+            "content": "LIBRARY → WEST ENTRANCE",
+            "kind": "sign"
+          }
+        ],
+        "crowd_level": "low",
+        "path_status": "blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.82,
+        "locationLabel": "Block A Corridor"
+      },
+      "ocr": {
+        "text": "LIBRARY → WEST ENTRANCE",
+        "lines": [
+          "LIBRARY →",
+          "WEST ENTRANCE"
+        ],
+        "documentType": "sign",
+        "confidence": 0.82,
+        "demoMode": true,
+        "safetyMessage": "OCR is simulated in Demo Mode. Confirm the sign or document before acting."
+      },
+      "id": "obs-1789538245492-26",
+      "observedAt": "2026-09-16T05:57:25.492Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "chair",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "caution"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "chair at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "computer monitor"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "person",
+        "computer monitor",
+        "laptop"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "Indoor workspace at desk",
+      "scene": "indoor workspace desk",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "A person and computer equipment are immediately in front of you, partially blocking your direct path.",
+      "vision": {
+        "scene": "indoor workspace desk",
+        "objects": [
+          {
+            "type": "person",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "computer monitor",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "computer monitor",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "low",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Indoor workspace at desk",
+        "spokenHint": "A person and computer equipment are immediately in front of you, partially blocking your direct path."
+      },
+      "ocr": null,
+      "id": "obs-1789538255838-27",
+      "observedAt": "2026-09-16T05:57:35.838Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "computer monitor",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "computer monitor at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.3,
+      "locationLabel": "very dark indoor space",
+      "scene": "dark interior space",
+      "crowdLevel": "none",
+      "lighting": "dark",
+      "spokenHint": "The area is extremely dark and visibility is too low to safely confirm your path.",
+      "vision": {
+        "scene": "dark interior space",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0.1
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0.1,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "partially_blocked",
+        "lighting": "dark",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.3,
+        "locationLabel": "very dark indoor space",
+        "spokenHint": "The area is extremely dark and visibility is too low to safely confirm your path."
+      },
+      "ocr": null,
+      "id": "obs-1789538433026-28",
+      "observedAt": "2026-09-16T06:00:33.026Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "Barrier",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "Path blocked ahead",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.1,
+      "locationLabel": "unclear dark view",
+      "scene": "dark and unclear view",
+      "crowdLevel": "none",
+      "lighting": "dark",
+      "spokenHint": "The camera view is too dark and obscured to safely navigate toward the library.",
+      "vision": {
+        "scene": "dark and unclear view",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "blocked",
+        "lighting": "dark",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "high"
+        },
+        "confidence": 0.1,
+        "locationLabel": "unclear dark view",
+        "spokenHint": "The camera view is too dark and obscured to safely navigate toward the library."
+      },
+      "ocr": null,
+      "id": "obs-1789538784422-29",
+      "observedAt": "2026-09-16T06:06:24.422Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "Barrier",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "Path blocked ahead",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "chair"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor office or study desk",
+      "scene": "office desk with laptop",
+      "crowdLevel": "none",
+      "lighting": "bright",
+      "spokenHint": "Path is clear near the desk, with a laptop and keyboard directly in front of you.",
+      "vision": {
+        "scene": "office desk with laptop",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "chair",
+            "position": "right",
+            "distance": "far",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor office or study desk",
+        "spokenHint": "Path is clear near the desk, with a laptop and keyboard directly in front of you."
+      },
+      "ocr": null,
+      "id": "obs-1789538792962-30",
+      "observedAt": "2026-09-16T06:06:32.962Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "desk",
+        "computer monitor"
+      ],
+      "signs": [],
+      "confidence": 0.6,
+      "locationLabel": "Indoor office workspace area",
+      "scene": "office desk space",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "Caution, a desk is directly in front of your path.",
+      "vision": {
+        "scene": "office desk space",
+        "objects": [
+          {
+            "type": "desk",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "computer monitor",
+            "position": "center",
+            "distance": "medium",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "medium",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.6,
+        "locationLabel": "Indoor office workspace area",
+        "spokenHint": "Caution, a desk is directly in front of your path."
+      },
+      "ocr": null,
+      "id": "obs-1789538801799-31",
+      "observedAt": "2026-09-16T06:06:41.799Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.4,
+      "locationLabel": "Unclear indoor space",
+      "scene": "obscured indoor space",
+      "crowdLevel": "none",
+      "lighting": "dim",
+      "spokenHint": "The camera view is blocked or too dark to determine a clear path.",
+      "vision": {
+        "scene": "obscured indoor space",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0.1
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0.1,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0.1,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "partially_blocked",
+        "lighting": "dim",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.4,
+        "locationLabel": "Unclear indoor space",
+        "spokenHint": "The camera view is blocked or too dark to determine a clear path."
+      },
+      "ocr": null,
+      "id": "obs-1789538815631-32",
+      "observedAt": "2026-09-16T06:06:55.631Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "Barrier",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "Path blocked ahead",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "computer monitor",
+        "mouse",
+        "desk"
+      ],
+      "signs": [],
+      "confidence": 0.75,
+      "locationLabel": "indoor computer desk area",
+      "scene": "office desk",
+      "crowdLevel": "none",
+      "lighting": "bright",
+      "spokenHint": "You are positioned near a desk with a computer monitor.",
+      "vision": {
+        "scene": "office desk",
+        "objects": [
+          {
+            "type": "computer monitor",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "mouse",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "desk",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.75,
+        "locationLabel": "indoor computer desk area",
+        "spokenHint": "You are positioned near a desk with a computer monitor."
+      },
+      "ocr": null,
+      "id": "obs-1789538824913-33",
+      "observedAt": "2026-09-16T06:07:04.913Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.2,
+      "locationLabel": "Unclear dark hallway",
+      "scene": "dark unclear view",
+      "crowdLevel": "none",
+      "lighting": "dark",
+      "spokenHint": "The image is too dark and unclear to see the path safely. Please adjust the camera.",
+      "vision": {
+        "scene": "dark unclear view",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0.1
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0.1,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0.1,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "partially_blocked",
+        "lighting": "dark",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.2,
+        "locationLabel": "Unclear dark hallway",
+        "spokenHint": "The image is too dark and unclear to see the path safely. Please adjust the camera."
+      },
+      "ocr": null,
+      "id": "obs-1789538833061-34",
+      "observedAt": "2026-09-16T06:07:13.061Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "Barrier",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "Path blocked ahead",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.3,
+      "locationLabel": "indoor tiled floor area",
+      "scene": "obscured indoor floor view",
+      "crowdLevel": "none",
+      "lighting": "dim",
+      "spokenHint": "Camera view is heavily obscured, please hold your phone level.",
+      "vision": {
+        "scene": "obscured indoor floor view",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "dim",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.3,
+        "locationLabel": "indoor tiled floor area",
+        "spokenHint": "Camera view is heavily obscured, please hold your phone level."
+      },
+      "ocr": null,
+      "id": "obs-1789538842157-35",
+      "observedAt": "2026-09-16T06:07:22.157Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "chair"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "fabric",
+        "chair"
+      ],
+      "signs": [],
+      "confidence": 0.7,
+      "locationLabel": "Indoor space with furniture",
+      "scene": "Close-up view of patterned fabric and a chair",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "Caution, a chair is nearby on your left blocking part of your movement.",
+      "vision": {
+        "scene": "Close-up view of patterned fabric and a chair",
+        "objects": [
+          {
+            "type": "fabric",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "chair",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "chair",
+            "severity": "medium",
+            "position": "left"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.7,
+        "locationLabel": "Indoor space with furniture",
+        "spokenHint": "Caution, a chair is nearby on your left blocking part of your movement."
+      },
+      "ocr": null,
+      "id": "obs-1789538867432-36",
+      "observedAt": "2026-09-16T06:07:47.432Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "chair",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "chair at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.3,
+      "locationLabel": "Obscured camera view indoors",
+      "scene": "obscured dark view",
+      "crowdLevel": "none",
+      "lighting": "dark",
+      "spokenHint": "The camera view is blocked or too dark to see your path clearly.",
+      "vision": {
+        "scene": "obscured dark view",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "blocked",
+        "lighting": "dark",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "high"
+        },
+        "confidence": 0.3,
+        "locationLabel": "Obscured camera view indoors",
+        "spokenHint": "The camera view is blocked or too dark to see your path clearly."
+      },
+      "ocr": null,
+      "id": "obs-1789538882616-37",
+      "observedAt": "2026-09-16T06:08:02.616Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "Barrier",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "Path blocked ahead",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "snack package"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "laptop",
+        "snack package"
+      ],
+      "signs": [
+        "Lenovo",
+        "Outline Timeline main"
+      ],
+      "confidence": 0.85,
+      "locationLabel": "indoor desk setup",
+      "scene": "desk with laptops and packaged snacks",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "Desk surface ahead with laptops and small snack packages nearby.",
+      "vision": {
+        "scene": "desk with laptops and packaged snacks",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "left",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "laptop",
+            "position": "right",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "snack package",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "snack package",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [
+          {
+            "content": "Lenovo",
+            "kind": "sign",
+            "meaning": "branding on laptop"
+          },
+          {
+            "content": "Outline Timeline main",
+            "kind": "sign",
+            "meaning": "screen interface elements"
+          }
+        ],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor desk setup",
+        "spokenHint": "Desk surface ahead with laptops and small snack packages nearby."
+      },
+      "ocr": {
+        "text": "Lenovo\nOutline Timeline main",
+        "lines": [
+          "Lenovo",
+          "Outline Timeline main"
+        ],
+        "documentType": "sign",
+        "confidence": 0.85,
+        "demoMode": false,
+        "safetyMessage": "OCR can misread text. Confirm the sign or document before acting."
+      },
+      "id": "obs-1789539473978-1",
+      "observedAt": "2026-09-16T06:17:53.978Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "snack package",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "snack package at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "snack package"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "laptop",
+        "snack package",
+        "water bottle"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "desk workspace surface area",
+      "scene": "desk setup with laptops and snacks",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "You are at a desk with two laptops and a small snack package on the table surface.",
+      "vision": {
+        "scene": "desk setup with laptops and snacks",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "laptop",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "snack package",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "water bottle",
+            "position": "right",
+            "distance": "near",
+            "relevance": "low"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "snack package",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "desk workspace surface area",
+        "spokenHint": "You are at a desk with two laptops and a small snack package on the table surface."
+      },
+      "ocr": null,
+      "id": "obs-1789539484622-2",
+      "observedAt": "2026-09-16T06:18:04.622Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "snack package",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "snack package at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [],
+      "signs": [],
+      "confidence": 0.3,
+      "locationLabel": "Indoor space close up",
+      "scene": "indoor space close up",
+      "crowdLevel": "none",
+      "lighting": "dim",
+      "spokenHint": "Path appears clear, but visibility is low.",
+      "vision": {
+        "scene": "indoor space close up",
+        "objects": [],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "dim",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.3,
+        "locationLabel": "Indoor space close up",
+        "spokenHint": "Path appears clear, but visibility is low."
+      },
+      "ocr": null,
+      "id": "obs-1789539492163-3",
+      "observedAt": "2026-09-16T06:18:12.163Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "snack package"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "laptop",
+        "water bottle",
+        "snack package"
+      ],
+      "signs": [
+        "Explorer"
+      ],
+      "confidence": 0.85,
+      "locationLabel": "office desk workspace",
+      "scene": "office desk with laptops",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "Caution, snack packages are on the desk near your right hand, and laptops are directly in front of you.",
+      "vision": {
+        "scene": "office desk with laptops",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "laptop",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "water bottle",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "snack package",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "snack package",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [
+          {
+            "content": "Explorer",
+            "kind": "sign",
+            "meaning": "IDE interface on screen"
+          }
+        ],
+        "crowd_level": "low",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "office desk workspace",
+        "spokenHint": "Caution, snack packages are on the desk near your right hand, and laptops are directly in front of you."
+      },
+      "ocr": {
+        "text": "Explorer",
+        "lines": [
+          "Explorer"
+        ],
+        "documentType": "sign",
+        "confidence": 0.85,
+        "demoMode": false,
+        "safetyMessage": "OCR can misread text. Confirm the sign or document before acting."
+      },
+      "id": "obs-1789539744502-4",
+      "observedAt": "2026-09-16T06:22:24.502Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "snack package",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "snack package at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "snack package",
+        "bottle"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "laptop",
+        "bottle",
+        "snack package"
+      ],
+      "signs": [
+        "File Edit Selection View Go Run Terminal Help"
+      ],
+      "confidence": 0.85,
+      "locationLabel": "desk with laptops",
+      "scene": "office desk with laptops",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "Path cluttered. Small snack packages and a water bottle are on the desk between the laptops.",
+      "vision": {
+        "scene": "office desk with laptops",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "laptop",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "bottle",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "snack package",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "snack package",
+            "severity": "low",
+            "position": "center"
+          },
+          {
+            "type": "bottle",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [
+          {
+            "content": "File Edit Selection View Go Run Terminal Help",
+            "kind": "sign",
+            "meaning": "IDE interface on the right screen"
+          }
+        ],
+        "crowd_level": "low",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "desk with laptops",
+        "spokenHint": "Path cluttered. Small snack packages and a water bottle are on the desk between the laptops."
+      },
+      "ocr": {
+        "text": "File Edit Selection View Go Run Terminal Help",
+        "lines": [
+          "File Edit Selection View Go Run Terminal Help"
+        ],
+        "documentType": "sign",
+        "confidence": 0.85,
+        "demoMode": false,
+        "safetyMessage": "OCR can misread text. Confirm the sign or document before acting."
+      },
+      "id": "obs-1789539752386-5",
+      "observedAt": "2026-09-16T06:22:32.386Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "snack package",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "snack package, bottle at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "table"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "table"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor room with table",
+      "scene": "empty room interior",
+      "crowdLevel": "none",
+      "lighting": "bright",
+      "spokenHint": "Path is clear ahead, but a table is on your right side.",
+      "vision": {
+        "scene": "empty room interior",
+        "objects": [
+          {
+            "type": "table",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "table",
+            "severity": "low",
+            "position": "right"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor room with table",
+        "spokenHint": "Path is clear ahead, but a table is on your right side."
+      },
+      "ocr": null,
+      "id": "obs-1789539761153-6",
+      "observedAt": "2026-09-16T06:22:41.153Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "table",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "table at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "desk"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "desk",
+        "desk",
+        "window"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor room tiled floor",
+      "scene": "indoor room with tiled floor",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "Path is clear ahead. A desk is to your right.",
+      "vision": {
+        "scene": "indoor room with tiled floor",
+        "objects": [
+          {
+            "type": "desk",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "desk",
+            "position": "left",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "window",
+            "position": "center",
+            "distance": "far",
+            "relevance": "low"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "desk",
+            "severity": "low",
+            "position": "right"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor room tiled floor",
+        "spokenHint": "Path is clear ahead. A desk is to your right."
+      },
+      "ocr": null,
+      "id": "obs-1789539772870-7",
+      "observedAt": "2026-09-16T06:22:52.870Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "desk",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "desk at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "desk",
+        "window"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "indoor room with desk",
+      "scene": "indoor room",
+      "crowdLevel": "none",
+      "lighting": "bright",
+      "spokenHint": "Path is clear ahead. A desk is on your left.",
+      "vision": {
+        "scene": "indoor room",
+        "objects": [
+          {
+            "type": "desk",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "window",
+            "position": "center",
+            "distance": "far",
+            "relevance": "low"
+          }
+        ],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.85,
+        "locationLabel": "indoor room with desk",
+        "spokenHint": "Path is clear ahead. A desk is on your left."
+      },
+      "ocr": null,
+      "id": "obs-1789539781375-8",
+      "observedAt": "2026-09-16T06:23:01.375Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "desk",
+        "desk"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "office room interior",
+      "scene": "office or study room",
+      "crowdLevel": "none",
+      "lighting": "bright",
+      "spokenHint": "Path is clear ahead, with a desk to your right.",
+      "vision": {
+        "scene": "office or study room",
+        "objects": [
+          {
+            "type": "desk",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "desk",
+            "position": "right",
+            "distance": "far",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "bright",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.85,
+        "locationLabel": "office room interior",
+        "spokenHint": "Path is clear ahead, with a desk to your right."
+      },
+      "ocr": null,
+      "id": "obs-1789539791989-9",
+      "observedAt": "2026-09-16T06:23:11.989Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "chair"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "chair",
+        "desk",
+        "people"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "Computer workstation office area",
+      "scene": "Computer lab or office workspace",
+      "crowdLevel": "medium",
+      "lighting": "normal",
+      "spokenHint": "Caution, a chair is near your path on the right side and there are several people ahead in the room.",
+      "vision": {
+        "scene": "Computer lab or office workspace",
+        "objects": [
+          {
+            "type": "chair",
+            "position": "center right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "desk",
+            "position": "center right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "people",
+            "position": "center background",
+            "distance": "far",
+            "relevance": "high"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "chair",
+            "severity": "medium",
+            "position": "center right"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "medium",
+        "path_status": "partially_blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "medium"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Computer workstation office area",
+        "spokenHint": "Caution, a chair is near your path on the right side and there are several people ahead in the room."
+      },
+      "ocr": null,
+      "id": "obs-1789539800836-10",
+      "observedAt": "2026-09-16T06:23:20.836Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "chair",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "chair at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "blocked",
+      "obstacles": [
+        "laptop"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "keyboard"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "desk with open laptop",
+      "scene": "laptop keyboard and screen",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "You are facing a laptop on a desk, which blocks your immediate forward desk space.",
+      "vision": {
+        "scene": "laptop keyboard and screen",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "keyboard",
+            "position": "bottom",
+            "distance": "near",
+            "relevance": "medium"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "laptop",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "blocked",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": false,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "desk with open laptop",
+        "spokenHint": "You are facing a laptop on a desk, which blocks your immediate forward desk space."
+      },
+      "ocr": null,
+      "id": "obs-1789539812143-11",
+      "observedAt": "2026-09-16T06:23:32.143Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "laptop",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "laptop at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "clear",
+      "pathDetail": "clear",
+      "obstacles": [],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "mouse",
+        "phone"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "desk with laptop and mouse",
+      "scene": "desk setup",
+      "crowdLevel": "none",
+      "lighting": "normal",
+      "spokenHint": "You are at a desk with a laptop and mouse nearby. No obstacles detected on your immediate path.",
+      "vision": {
+        "scene": "desk setup",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "left",
+            "distance": "near",
+            "relevance": "low"
+          },
+          {
+            "type": "mouse",
+            "position": "right",
+            "distance": "near",
+            "relevance": "low"
+          },
+          {
+            "type": "phone",
+            "position": "top right",
+            "distance": "near",
+            "relevance": "low"
+          }
+        ],
+        "obstacles": [],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "none",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "none"
+        },
+        "confidence": 0.85,
+        "locationLabel": "desk with laptop and mouse",
+        "spokenHint": "You are at a desk with a laptop and mouse nearby. No obstacles detected on your immediate path."
+      },
+      "ocr": null,
+      "id": "obs-1789539820264-12",
+      "observedAt": "2026-09-16T06:23:40.264Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-mid",
+            "label": "Midway Corridor",
+            "type": "turn",
+            "x": 50,
+            "y": 50,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 50,
+            "y": 15,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 0,
+        "clockDirections": {
+          "ahead": "Direct path toward destination at 12 o'clock in this frame",
+          "right": "East arcade at 3 o'clock",
+          "left": "West garden at 9 o'clock",
+          "behind": "North entrance at 6 o'clock"
+        }
+      }
+    },
+    {
+      "pathStatus": "blocked",
+      "pathDetail": "partially_blocked",
+      "obstacles": [
+        "snacks"
+      ],
+      "stairs": false,
+      "elevator": "unknown",
+      "detectedObjects": [
+        "laptop",
+        "laptop",
+        "water bottle",
+        "snacks",
+        "desk",
+        "person"
+      ],
+      "signs": [],
+      "confidence": 0.85,
+      "locationLabel": "Indoor office workspace desk",
+      "scene": "office desk with laptops and clutter",
+      "crowdLevel": "low",
+      "lighting": "normal",
+      "spokenHint": "You are at a desk with two laptops and some snacks directly in front of you; the path away from the desk appears clear.",
+      "vision": {
+        "scene": "office desk with laptops and clutter",
+        "objects": [
+          {
+            "type": "laptop",
+            "position": "left",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "laptop",
+            "position": "right",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "water bottle",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "snacks",
+            "position": "center",
+            "distance": "near",
+            "relevance": "medium"
+          },
+          {
+            "type": "desk",
+            "position": "center",
+            "distance": "near",
+            "relevance": "high"
+          },
+          {
+            "type": "person",
+            "position": "background",
+            "distance": "far",
+            "relevance": "low"
+          }
+        ],
+        "obstacles": [
+          {
+            "type": "snacks",
+            "severity": "low",
+            "position": "center"
+          }
+        ],
+        "stairs": {
+          "detected": false,
+          "confidence": 0
+        },
+        "door": {
+          "detected": false,
+          "confidence": 0,
+          "state": "unknown"
+        },
+        "elevator": {
+          "detected": false,
+          "confidence": 0,
+          "status": "unknown"
+        },
+        "text": [],
+        "crowd_level": "low",
+        "path_status": "clear",
+        "lighting": "normal",
+        "accessibility_state": {
+          "accessible_path": true,
+          "obstacle_level": "low"
+        },
+        "confidence": 0.85,
+        "locationLabel": "Indoor office workspace desk",
+        "spokenHint": "You are at a desk with two laptops and some snacks directly in front of you; the path away from the desk appears clear."
+      },
+      "ocr": null,
+      "id": "obs-1789539830320-13",
+      "observedAt": "2026-09-16T06:23:50.320Z",
+      "spatialContext": {
+        "waypoints": [
+          {
+            "id": "wp-origin",
+            "label": "Current Position",
+            "type": "origin",
+            "x": 50,
+            "y": 85,
+            "status": "clear"
+          },
+          {
+            "id": "wp-barrier",
+            "label": "snacks",
+            "type": "barrier",
+            "x": 50,
+            "y": 45,
+            "status": "blocked"
+          },
+          {
+            "id": "wp-fountain",
+            "label": "Fountain Turn",
+            "type": "turn",
+            "x": 75,
+            "y": 55,
+            "status": "clear"
+          },
+          {
+            "id": "wp-elevator",
+            "label": "Elevator Lobby",
+            "type": "elevator",
+            "x": 75,
+            "y": 25,
+            "status": "clear"
+          },
+          {
+            "id": "wp-destination",
+            "label": "Library",
+            "type": "destination",
+            "x": 75,
+            "y": 10,
+            "status": "clear"
+          }
+        ],
+        "currentPoint": {
+          "x": 50,
+          "y": 85
+        },
+        "headingDegrees": 34,
+        "clockDirections": {
+          "ahead": "snacks at 12 o'clock (Blocked)",
+          "right": "Fountain turn point at 3 o'clock",
+          "left": "West quad lawn at 9 o'clock",
+          "behind": "North corridor entrance at 6 o'clock"
+        }
+      }
+    }
+  ],
+  "changes": [
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "backpack",
+      "accessibilityImpact": "high",
+      "before": "Path blocked. Elevator unknown.",
+      "change": "New obstacle detected: backpack, chair. Path status shifted from blocked to partially_blocked. Crowd level increased.",
+      "currentState": "Path partially blocked. Obstacle: backpack, chair. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "laptop",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: backpack, chair. Elevator unknown.",
+      "change": "New obstacle detected: laptop. Previously detected backpack, chair removed.",
+      "currentState": "Path partially blocked. Obstacle: laptop. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_removed",
+      "object": "laptop",
+      "accessibilityImpact": "medium",
+      "before": "Path partially blocked. Obstacle: laptop. Elevator unknown.",
+      "change": "Previously detected laptop removed. Path status shifted from partially_blocked to clear. Elevator status changed from unknown to available.",
+      "currentState": "Path appears clear in this frame. Elevator available.",
+      "impact": "The previously reported barrier appears cleared in this frame.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "chair",
+      "accessibilityImpact": "high",
+      "before": "Path appears clear in this frame. Elevator available.",
+      "change": "New obstacle detected: chair. Path status shifted from clear to blocked. Elevator status changed from available to unavailable.",
+      "currentState": "Path blocked. Obstacle: chair. Elevator unavailable.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Use the east concourse toward Library. It is longer but stays level while the preferred indoor option is limited.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "laptop",
+      "accessibilityImpact": "high",
+      "before": "Path blocked. Obstacle: chair. Elevator unavailable.",
+      "change": "New obstacle detected: laptop. Previously detected chair removed. Path status shifted from blocked to partially_blocked. Elevator status changed from unavailable to unknown.",
+      "currentState": "Path partially blocked. Obstacle: laptop. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "desk",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: laptop. Elevator unknown.",
+      "change": "New obstacle detected: desk. Previously detected laptop removed. Crowd level increased.",
+      "currentState": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": false,
+      "type": "none",
+      "object": "",
+      "accessibilityImpact": "none",
+      "before": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "change": "No meaningful accessibility change detected.",
+      "currentState": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": false
+    },
+    {
+      "detected": true,
+      "type": "route_blocked",
+      "object": "",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "change": "Path status shifted from partially_blocked to blocked.",
+      "currentState": "Path blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": false,
+      "type": "none",
+      "object": "desk",
+      "accessibilityImpact": "none",
+      "before": "Path blocked. Obstacle: desk. Elevator unknown.",
+      "change": "Previously detected desk removed.",
+      "currentState": "Path blocked. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": false
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "person",
+      "accessibilityImpact": "high",
+      "before": "Path blocked. Elevator unknown.",
+      "change": "New obstacle detected: person. Path status shifted from blocked to partially_blocked.",
+      "currentState": "Path partially blocked. Obstacle: person. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "desk",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: person. Elevator unknown.",
+      "change": "New obstacle detected: desk. Previously detected person removed. Crowd level increased.",
+      "currentState": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "desk and computer equipment",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "change": "New obstacle detected: desk and computer equipment. Previously detected desk removed.",
+      "currentState": "Path partially blocked. Obstacle: desk and computer equipment. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "desk",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: desk and computer equipment. Elevator unknown.",
+      "change": "New obstacle detected: desk. Previously detected desk and computer equipment removed.",
+      "currentState": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "route_blocked",
+      "object": "",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "change": "Path status shifted from partially_blocked to blocked.",
+      "currentState": "Path blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_removed",
+      "object": "desk",
+      "accessibilityImpact": "medium",
+      "before": "Path blocked. Obstacle: desk. Elevator unknown.",
+      "change": "Previously detected desk removed. Path status shifted from blocked to clear. Elevator status changed from unknown to available.",
+      "currentState": "Path appears clear in this frame. Elevator available.",
+      "impact": "The previously reported barrier appears cleared in this frame.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "chair",
+      "accessibilityImpact": "high",
+      "before": "Path appears clear in this frame. Elevator available.",
+      "change": "New obstacle detected: chair. Path status shifted from clear to blocked. Elevator status changed from available to unavailable.",
+      "currentState": "Path blocked. Obstacle: chair. Elevator unavailable.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Use the east concourse toward Library. It is longer but stays level while the preferred indoor option is limited.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "computer monitor",
+      "accessibilityImpact": "high",
+      "before": "Path blocked. Obstacle: chair. Elevator unavailable.",
+      "change": "New obstacle detected: computer monitor. Previously detected chair removed. Path status shifted from blocked to partially_blocked. Elevator status changed from unavailable to unknown.",
+      "currentState": "Path partially blocked. Obstacle: computer monitor. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": false,
+      "type": "none",
+      "object": "computer monitor",
+      "accessibilityImpact": "none",
+      "before": "Path partially blocked. Obstacle: computer monitor. Elevator unknown.",
+      "change": "Previously detected computer monitor removed.",
+      "currentState": "Path partially blocked. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": false
+    },
+    {
+      "detected": true,
+      "type": "route_blocked",
+      "object": "",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Elevator unknown.",
+      "change": "Path status shifted from partially_blocked to blocked.",
+      "currentState": "Path blocked. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "route_cleared",
+      "object": "",
+      "accessibilityImpact": "medium",
+      "before": "Path blocked. Elevator unknown.",
+      "change": "Path status shifted from blocked to clear.",
+      "currentState": "Path appears clear in this frame. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "desk",
+      "accessibilityImpact": "high",
+      "before": "Path appears clear in this frame. Elevator unknown.",
+      "change": "New obstacle detected: desk. Path status shifted from clear to partially_blocked.",
+      "currentState": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": false,
+      "type": "none",
+      "object": "desk",
+      "accessibilityImpact": "none",
+      "before": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "change": "Previously detected desk removed.",
+      "currentState": "Path partially blocked. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": false
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "desk",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Elevator unknown.",
+      "change": "New obstacle detected: desk.",
+      "currentState": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": false,
+      "type": "none",
+      "object": "desk",
+      "accessibilityImpact": "none",
+      "before": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "change": "Previously detected desk removed.",
+      "currentState": "Path partially blocked. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": false
+    },
+    {
+      "detected": true,
+      "type": "route_cleared",
+      "object": "",
+      "accessibilityImpact": "medium",
+      "before": "Path partially blocked. Elevator unknown.",
+      "change": "Path status shifted from partially_blocked to clear.",
+      "currentState": "Path appears clear in this frame. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "chair",
+      "accessibilityImpact": "high",
+      "before": "Path appears clear in this frame. Elevator unknown.",
+      "change": "New obstacle detected: chair. Path status shifted from clear to partially_blocked.",
+      "currentState": "Path partially blocked. Obstacle: chair. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "route_blocked",
+      "object": "chair",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: chair. Elevator unknown.",
+      "change": "Previously detected chair removed. Path status shifted from partially_blocked to blocked.",
+      "currentState": "Path blocked. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "snack package",
+      "accessibilityImpact": "high",
+      "before": "Path blocked. Elevator unknown.",
+      "change": "New obstacle detected: snack package. Path status shifted from blocked to partially_blocked.",
+      "currentState": "Path partially blocked. Obstacle: snack package. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": false,
+      "type": "none",
+      "object": "",
+      "accessibilityImpact": "none",
+      "before": "Path partially blocked. Obstacle: snack package. Elevator unknown.",
+      "change": "No meaningful accessibility change detected.",
+      "currentState": "Path partially blocked. Obstacle: snack package. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": false
+    },
+    {
+      "detected": true,
+      "type": "obstacle_removed",
+      "object": "snack package",
+      "accessibilityImpact": "medium",
+      "before": "Path partially blocked. Obstacle: snack package. Elevator unknown.",
+      "change": "Previously detected snack package removed. Path status shifted from partially_blocked to clear.",
+      "currentState": "Path appears clear in this frame. Elevator unknown.",
+      "impact": "The previously reported barrier appears cleared in this frame.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "snack package",
+      "accessibilityImpact": "high",
+      "before": "Path appears clear in this frame. Elevator unknown.",
+      "change": "New obstacle detected: snack package. Path status shifted from clear to partially_blocked.",
+      "currentState": "Path partially blocked. Obstacle: snack package. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "bottle",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: snack package. Elevator unknown.",
+      "change": "New obstacle detected: bottle.",
+      "currentState": "Path partially blocked. Obstacle: snack package, bottle. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "table",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: snack package, bottle. Elevator unknown.",
+      "change": "New obstacle detected: table. Previously detected snack package, bottle removed.",
+      "currentState": "Path partially blocked. Obstacle: table. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "desk",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: table. Elevator unknown.",
+      "change": "New obstacle detected: desk. Previously detected table removed.",
+      "currentState": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_removed",
+      "object": "desk",
+      "accessibilityImpact": "medium",
+      "before": "Path partially blocked. Obstacle: desk. Elevator unknown.",
+      "change": "Previously detected desk removed. Path status shifted from partially_blocked to clear.",
+      "currentState": "Path appears clear in this frame. Elevator unknown.",
+      "impact": "The previously reported barrier appears cleared in this frame.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": false,
+      "type": "none",
+      "object": "",
+      "accessibilityImpact": "none",
+      "before": "Path appears clear in this frame. Elevator unknown.",
+      "change": "No meaningful accessibility change detected.",
+      "currentState": "Path appears clear in this frame. Elevator unknown.",
+      "impact": "No meaningful impact on route accessibility.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": false
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "chair",
+      "accessibilityImpact": "high",
+      "before": "Path appears clear in this frame. Elevator unknown.",
+      "change": "New obstacle detected: chair. Path status shifted from clear to partially_blocked. Crowd level increased.",
+      "currentState": "Path partially blocked. Obstacle: chair. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "laptop",
+      "accessibilityImpact": "high",
+      "before": "Path partially blocked. Obstacle: chair. Elevator unknown.",
+      "change": "New obstacle detected: laptop. Previously detected chair removed. Path status shifted from partially_blocked to blocked.",
+      "currentState": "Path blocked. Obstacle: laptop. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_removed",
+      "object": "laptop",
+      "accessibilityImpact": "medium",
+      "before": "Path blocked. Obstacle: laptop. Elevator unknown.",
+      "change": "Previously detected laptop removed. Path status shifted from blocked to clear.",
+      "currentState": "Path appears clear in this frame. Elevator unknown.",
+      "impact": "The previously reported barrier appears cleared in this frame.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    },
+    {
+      "detected": true,
+      "type": "obstacle_added",
+      "object": "snacks",
+      "accessibilityImpact": "high",
+      "before": "Path appears clear in this frame. Elevator unknown.",
+      "change": "New obstacle detected: snacks. Path status shifted from clear to partially_blocked.",
+      "currentState": "Path partially blocked. Obstacle: snacks. Elevator unknown.",
+      "impact": "WARNING: Direct route is newly obstructed and poses a collision risk.",
+      "recommendation": "Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "announce": true
+    }
+  ],
+  "conversation": [
+    {
+      "role": "user",
+      "text": "Where is the elevator?",
+      "at": "2026-09-16T03:36:28.375Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T03:36:28.376Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator?",
+      "at": "2026-09-16T04:01:32.948Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unavailable. Use the east concourse toward Library. It is longer but stays level while the preferred indoor option is limited.",
+      "at": "2026-09-16T04:01:50.166Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:08.785Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:10.238Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:11.021Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:11.574Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:11.943Z"
+    },
+    {
+      "role": "assistant",
+      "text": "No elevator is detected in the current view. A desk is directly in front of you blocking your path. Please scan the area or turn to search for the elevator.",
+      "at": "2026-09-16T04:05:13.482Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:14.941Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T04:05:15.765Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:15.774Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T04:05:15.939Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator",
+      "at": "2026-09-16T04:05:15.948Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T04:05:16.211Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T04:05:16.242Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T04:05:16.376Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T04:05:16.426Z"
+    },
+    {
+      "role": "assistant",
+      "text": "Based on the latest observation, the elevator is unknown. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+      "at": "2026-09-16T04:05:24.757Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator?",
+      "at": "2026-09-16T04:25:42.639Z"
+    },
+    {
+      "role": "user",
+      "text": "Where is the elevator?",
+      "at": "2026-09-16T04:25:44.049Z"
+    },
+    {
+      "role": "assistant",
+      "text": "The elevator is not visible in the current view. Please try panning your camera or scanning around to locate it.",
+      "at": "2026-09-16T04:25:46.828Z"
+    },
+    {
+      "role": "assistant",
+      "text": "The elevator is not detected in your current camera view. Please scan the area or turn around to check another direction.",
+      "at": "2026-09-16T04:25:48.197Z"
+    }
+  ],
+  "lastSpoken": "You are at a desk with two laptops and some snacks directly in front of you; the path away from the desk appears clear. Route B is slightly longer but avoids stairs and matches your accessibility preference for Library.",
+  "demoMode": false
+}

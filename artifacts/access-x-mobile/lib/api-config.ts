@@ -1,23 +1,7 @@
-/**
- * Resolves the G Sense backend base URL for every runtime the app ships in.
- *
- * Precedence:
- *   1. EXPO_PUBLIC_API_URL — the production knob. Baked in at build time and
- *      used verbatim, so it can point at the deployed backend over HTTPS or at
- *      a LAN address during a hackathon demo.
- *   2. EXPO_PUBLIC_DOMAIN — the existing Expo Go / static-bundle convention
- *      (`scripts/build.js` and `start-gsense.ps1` both set it).
- *   3. `http://localhost:5000` — development only.
- *
- * A standalone APK always runs in a release build, so an unconfigured install
- * resolves to `null` and the app degrades to the offline notice instead of
- * silently calling a `localhost` backend that cannot exist on a phone.
- */
-
-const DEV_FALLBACK_BASE_URL = 'http://localhost:5000';
+import Constants from 'expo-constants';
+import { Platform } from 'react-native';
 
 const LOOPBACK_HOSTS = new Set(['localhost', '127.0.0.1', '0.0.0.0', '10.0.2.2']);
-
 const PRIVATE_LAN_PATTERN = /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/;
 
 export const OFFLINE_MESSAGE =
@@ -27,6 +11,27 @@ function isLocalHostname(hostname: string): boolean {
   return LOOPBACK_HOSTS.has(hostname) || PRIVATE_LAN_PATTERN.test(hostname);
 }
 
+export function getExpoHost(): string | null {
+  try {
+    const hostUri =
+      Constants.expoConfig?.hostUri ||
+      (Constants as any).manifest2?.extra?.expoGo?.debuggerHost ||
+      (Constants as any).manifest?.debuggerHost ||
+      (Constants as any).experienceUrl;
+
+    if (typeof hostUri === 'string' && hostUri.length > 0) {
+      const clean = hostUri.replace(/^https?:\/\//i, '').replace(/^exp:\/\//i, '');
+      const host = clean.split('/')[0].split(':')[0].trim();
+      if (host && !LOOPBACK_HOSTS.has(host)) {
+        return host;
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
 /**
  * Normalises a configured host into an absolute base URL.
  *
@@ -34,7 +39,12 @@ function isLocalHostname(hostname: string): boolean {
  * addresses, where TLS is not available.
  */
 export function normaliseBaseUrl(configuredValue: string): string {
-  const trimmed = configuredValue.trim().replace(/\/+$/, '');
+  let trimmed = configuredValue.trim().replace(/\/+$/, '');
+
+  if (Platform.OS !== 'web') {
+    const detectedHost = getExpoHost() || '192.168.137.242';
+    trimmed = trimmed.replace(/\b(localhost|127\.0\.0\.1|0\.0\.0\.0)\b/g, detectedHost);
+  }
 
   if (/^https?:\/\//i.test(trimmed)) {
     return trimmed;
@@ -63,7 +73,16 @@ export function resolveApiBaseUrl(): string | null {
   const expoGoDomain = readEnv(process.env.EXPO_PUBLIC_DOMAIN);
   if (expoGoDomain) return normaliseBaseUrl(expoGoDomain);
 
-  if (__DEV__) return DEV_FALLBACK_BASE_URL;
+  const detectedHost = getExpoHost();
+  if (detectedHost) {
+    return `http://${detectedHost}:5000`;
+  }
+
+  if (Platform.OS !== 'web') {
+    return 'http://192.168.137.242:5000';
+  }
+
+  if (__DEV__) return 'http://localhost:5000';
 
   return null;
 }
